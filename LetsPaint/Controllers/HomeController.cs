@@ -15,6 +15,25 @@ namespace LetsPaint.Controllers
             return View();
         }
 
+        public IActionResult PaintingGallery()
+        {
+            return View();
+        }
+        public IActionResult CraftGallery()
+        {
+            return View();
+        }
+
+        public IActionResult RangoliGallery()
+        {
+            return View();
+        }
+
+        public IActionResult WallPaintingGallery()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
