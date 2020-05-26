@@ -1,10 +1,42 @@
 ﻿* {
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
+   
+}
+.socialShare {
+    padding: 0;
+    /* margin: -23px 0 0 0px; */
+    list-style: none;
+    float: right;
+    position: fixed;
+    right: 0;
+    top: -23px;
+}
+}
+.socialShare ul{
+}
+    .socialShare ul li{
+    }
+    .socialShare ul li a{
+    }
+    .socialShare ul li a:hover{
+       
+    }
+        .socialShare ul li a img {
+            width: 22px;
+            height: 22px;
+        }
+            .socialShare ul li a img:hover {
+                transform: scale(1.3);
+                transition: 1s;
+            }
+
+body {
+    overflow-x: hidden !important;
 }
 
 .bg-image {
-    background: url(../images/bg_image.png) no-repeat center center fixed;
+    background: url(../images/bg_5.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -51,7 +83,7 @@
 }
 
 .menu .left-menu{
-    width:30%;
+    width:25%;
     float:left;
 }
     .menu .left-menu img {
@@ -62,7 +94,7 @@
 
     .menu .right-menu {
        float:right;
-        width: 70%;
+        width: 75%;
     }
 
         .menu .right-menu ul {
@@ -91,7 +123,26 @@
     transition: display 0.5s;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
+    .socialShare {
+        float: right;
+        position: inherit;
+    }
+        .socialShare ul {
+            line-height: 32px !important;
+            width: 44vw;
+        }
+            .socialShare ul li {
+                height: 32px;
+                width: 38px;
+            }
+        .socialShare ul li a{
+            padding:0 5px !important;
+        }
+        .socialShare ul li a img{
+           width:32px;
+           height:32px;
+        }
     .mobile-menu {
         background: #33338c;
         width: 50vw;

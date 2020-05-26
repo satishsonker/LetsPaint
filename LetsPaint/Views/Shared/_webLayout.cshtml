@@ -18,6 +18,15 @@
                 <a href="/home/index">  <img src="~/images/logo_md_trans.png" alt="Lets Paint" /></a>
             </div>
             <div class="right-menu">
+                <div class="socialShare">
+                    <ul>
+                        <li title="Call"><a href="tel:+91-9972217679"><img src="~/images/call.png" /></a></li>
+                        <li title="WhatsApp"><a href="https://api.whatsapp.com/send?phone=919972217679&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><img src="~/images/whatsapp.png" /></a></li>
+                        @*<li title="Youtube"><a href=""><img src="~/images/youtube.png" /></a></li>*@
+                        <li title="Facebook"><a href="https://www.facebook.com/Lets-Paint-112932870431111" target="_blank"><img src="~/images/facebook.png" /></a></li>
+                        <li title="Instagram"><a href="https://www.instagram.com/letspaintcreative/" target="_blank"><img src="~/images/instagram.png" /></a></li>
+                    </ul>
+                </div>
                 <ul class="d-none d-md-block">
                     <li><a href="/home/index"><i class="fas fa-home"></i> Home</a></li>
                     <li>
@@ -80,6 +89,42 @@
             $(this).toggleClass('fa-bars').toggleClass('fa-times');
             $('.mobile-menu').toggleClass('mobile-menu-hidden');
         });
+
+        $('a[href*="#"]')
+  // Remove links that don't actually link to anything
+  .not('[href="#"]')
+  .not('[href="#0"]')
+  .click(function(event) {
+    // On-page links
+    if (
+      location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+      && 
+      location.hostname == this.hostname
+    ) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      // Does a scroll target exist?
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function() {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+          if ($target.is(":focus")) { // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+            $target.focus(); // Set focus again
+          };
+        });
+      }
+    }
+  });
     </script>
 </body>
 </html>

@@ -1,13 +1,21 @@
 ﻿.product-section {
     width: 100%;
     height: auto;
-    background: #55b4d4 no-repeat center center fixed;
-    padding:50px 0;
+    /*background: #55b4d4 no-repeat center center fixed;*/
+    background: url(../images/Product/Painting/paintingCollages_edit_sm.jpg) no-repeat center center fixed;
+    padding: 50px 0;
+    background-size: 100% 100%;
 }
 
-    .product-section .product-item {
-        box-shadow: 1px 1px 9px #151414;
-    }
+.card-body {
+    background: #2c2b2b;
+    color: white;
+}
+
+.product-section .product-item {
+    box-shadow: 1px 1px 9px #151414;
+    border: 3px solid black
+}
 
     .product-section .col-md-3{
         margin:10px 0px;
@@ -15,6 +23,7 @@
 
 .bg-image h2 {
     font-size: 39px;
+    color:black;
 }
 
 .quote-container {
@@ -66,48 +75,70 @@
 .front-craft {
     z-index: 1;
     transform: rotateY(180deg);
-    background: url(../images/Product/Craft/1.jpg) no-repeat;
+    background: url(../images/Product/Craft/1_sm.jpg) no-repeat;
     background-size: 100% 100%;
 }
 
 .back-craft {
     z-index: 2; /* back side, placed above front */
     transform: rotateY(0deg);
-    background: url(../images/Product/Craft/2.jpg) no-repeat;
+    background: url(../images/Product/Craft/2_sm.jpg) no-repeat;
     background-size: 100% 100%;
 }
 
 .front-wall {
     z-index: 1;
     transform: rotateY(180deg);
-    background: url(../images/Product/WallPainting/2.jpeg) no-repeat;
+    background: url(../images/Product/WallPainting/2_sm.jpg) no-repeat;
     background-size: 100% 100%;
 }
 
 .back-wall {
     z-index: 2; /* back side, placed above front */
     transform: rotateY(0deg);
-    background: url(../images/Product/WallPainting/1.jpeg) no-repeat;
+    background: url(../images/Product/WallPainting/1_sm.jpg) no-repeat;
     background-size: 100% 100%;
 }
 
 .back-rangoli {
     z-index: 2;
     transform: rotateY(0deg);
-    background: url(../images/Product/Rangoli/3.jpeg) no-repeat;
+    background: url(../images/Product/Rangoli/4_sm.jpg) no-repeat;
     background-size: 100% 100%;
 }
 
 .front-rangoli {
     z-index: 1;
     transform: rotateY(180deg);
-    background: url(../images/Product/Rangoli/4.jpeg) no-repeat;
+    background: url(../images/Product/Rangoli/3_sm.jpg) no-repeat;
     background-size: 100% 100%;
 }
 
-.product-section {
-    width: 100%;
-    height: auto;
-    background: #55b4d4 no-repeat center center fixed;
-    padding: 50px 0;
+
+@media only screen and (max-width: 900px) {
+    .bg-image h2 {
+        font-size: 24px;
+        color: black;
+    }
+}
+
+.fa-arrow-alt-circle-down {
+    transform: translate(0px, 10px);
+    animation: downAnimate 1s infinite;
+}
+
+@keyframes downAnimate {
+    from {
+        transform: translate(0px, 0px);
+    }
+
+    to {
+        transform: translate(0px, 10px);
+    }
+}
+
+@-moz-keyframes downAnimate {
+}
+
+@-webkit-keyframes downAnimate {
 }
