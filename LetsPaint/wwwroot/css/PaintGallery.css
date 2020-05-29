@@ -50,22 +50,21 @@
 .product-section {
     width: 100%;
     height: auto;
-    background:url(../images/Product/Painting/bg_image.jpg) no-repeat center center fixed;
-    background-size:100% 100%;
+    background: url(../images/Product/Painting/bg_image.jpg) no-repeat center center fixed;
+    background-size: 100% 100%;
     padding: 50px 0;
+    min-height: 100vh;
 }
 
-@media only screen and (max-width: 768px) {
-    .gallery .gallery-item img {
-        width: 300px;
-        height: 200px;
-        border-radius: 20px;
-        filter: grayscale(0%);
-        border-color: black;
-        border: 4px solid black;
+@media only screen and (max-width: 900px) {
+    .overlay, .overlay-artist {
+        opacity: 1 !important;
+    }
+    .gallery-container {
+        max-height: initial !important;
     }
 
-    .lb-nav a.lb-next{
+    .lb-nav a.lb-next {
         filter: alpha(Opacity=100);
         opacity: 1 !important;
     }
@@ -73,10 +72,134 @@
         filter: alpha(Opacity=100);
         opacity: 1 !important;
     }
-
-    .gallery {
-        margin: 10px 20px;
+    .gallery-container {
+        max-width: initial !important;
+    }
+    .container .row:not(.gallery-container) .col-md
+    {
+        height:50%;
+    }
+    .product-section{
+        padding-top:92px !important;
+    }
     }
 
+.gallery-item
+{
 
 }
+
+.gallery-container {
+    position: relative;
+    /* width: 50%; */
+    max-width: 300px;
+    max-height: 150px;
+    overflow: hidden;
+    transition: 1s;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 0px;
+}
+
+/* Make the image to responsive */
+    .gallery-container .image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+/* The overlay effect - lays on top of the container and over the image */
+.gallery-container .overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1;
+    width: 100%;
+    transition: .5s ease;
+    opacity: 0;
+    color: white;
+    font-size: 11px;
+    padding: 0px;
+    text-align: center;
+}
+
+    .gallery-container .overlay-artist {
+        position: absolute;
+        top: 0;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5); /* Black see-through */
+        color: #f1f1f1;
+        width: 100%;
+        transition: .5s ease;
+        opacity: 0;
+        color: white;
+        font-size: 11px;
+        padding: 0px;
+        text-align: center;
+    }
+/* When you mouse over the container, fade in the overlay title */
+.gallery-container:hover .overlay {
+    opacity: 1;
+    transition:1s;
+}
+
+    .gallery-container:hover .overlay-artist {
+        opacity: 1;
+        transition: 1s;
+    }
+
+    .gallery-container:hover {
+        opacity: 1;
+        transition: 1s ease-in-out;
+        transform: scale(1.1);
+    }
+
+.container .row:not(.galleries-container){
+        margin:20px 0;
+    }
+    .container .row:not(.galleries-container) .col-md {
+        margin: 20px 0;
+    }
+.container {
+    background: #ffffff73;
+    border-radius:10px;
+}
+.galleries {
+    width: 100%;
+    height: 40px;
+    background: #1f215d;
+    color: white;
+} .galleries ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        height:40px;
+    }
+    .galleries ul li {
+        float: left;
+        /* border: 1px solid black; */
+        font-size: 15px;
+        padding: 10px;
+        margin-left: -1px;
+        /* background: white; */
+        cursor: pointer;
+        transition: 1s;
+    }
+        .galleries ul li:hover {
+            background: #ff0047bf;
+            transition:1s;
+        }
+
+    .pad-0{
+        padding:0 !important;
+    }
+
+.active {
+    background: #ff0047bf;
+    transition: 1s;
+}
+
+    .active:after {
+       
+    }

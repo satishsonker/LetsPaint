@@ -1,0 +1,43 @@
+﻿.bg1 {
+    width: 100%;
+    height: auto;
+    background: url(../images/Product/Painting/bg_image.jpg) no-repeat center center fixed;
+    background-size: 100% 100%;
+    padding: 50px 0;
+    min-height: 100vh;
+}
+.bg2 {
+    background: linear-gradient(to right, #ffffff -6%, #eeeeee 98%) center center fixed;
+    height: 90vh;
+    width: 100%;
+}
+
+.artist-profile {
+    width: 80%;
+    border: 1px solid white;
+    margin-left: 10%;
+    /* position: relative; */
+    height: auto;
+    margin-top: 105px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 1px 1px 7px grey;
+}
+
+.artist-profile-pic {
+    background: url(../images/Artist/poonam2.jpg) fixed center no-repeat;
+    background-size: cover;
+}
+
+.header {
+    background: #1f215d;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.artist-bio {
+    font-size: 14px;
+    text-align: justify;
+}

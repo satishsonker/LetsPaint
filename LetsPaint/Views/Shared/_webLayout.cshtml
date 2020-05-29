@@ -20,17 +20,21 @@
             <div class="right-menu">
                 <div class="socialShare">
                     <ul>
-                        <li title="Call"><a href="tel:+91-9972217679"><img src="~/images/call.png" /></a></li>
-                        <li title="WhatsApp"><a href="https://api.whatsapp.com/send?phone=919972217679&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><img src="~/images/whatsapp.png" /></a></li>
+                        <li title="Call"><a href="tel:+91-8920521784"><img src="~/images/call.png" /></a></li>
+                        <li title="WhatsApp"><a href="https://api.whatsapp.com/send?phone=918920521784&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><img src="~/images/whatsapp.png" /></a></li>
                         @*<li title="Youtube"><a href=""><img src="~/images/youtube.png" /></a></li>*@
                         <li title="Facebook"><a href="https://www.facebook.com/Lets-Paint-112932870431111" target="_blank"><img src="~/images/facebook.png" /></a></li>
                         <li title="Instagram"><a href="https://www.instagram.com/letspaintcreative/" target="_blank"><img src="~/images/instagram.png" /></a></li>
                     </ul>
+                    @*<a href="tel:+91-8920521784" class="btn-call">+91-8920521784</a>*@
                 </div>
                 <ul class="d-none d-md-block">
                     <li><a href="/home/index"><i class="fas fa-home"></i> Home</a></li>
                     <li>
-                        <a href="#"><i class="fas fa-palette"></i> The Artist</a>
+                        <a href="/home/theartist"><i class="fas fa-palette"></i> The Artist</a>
+                    </li>
+                    <li>
+                        <a href="/home/PaintingGallery"><i class="fab fa-envira"></i> Gallery</a>
                     </li>
                     <li><a href="#"><i class="fas fa-paint-brush"></i> Services</a></li>
                     <li><a href="#"><i class="fas fa-hand-holding-usd"></i> Price</a></li>
@@ -42,15 +46,68 @@
         <ul class="mobile-menu mobile-menu-hidden">
             <li><a href="/home/index"><i class="fas fa-home"></i> Home</a></li>
             <li>
-                <a href="#"><i class="fas fa-palette"></i> The Artist</a>
+                <a href="/home/theartist"><i class="fas fa-palette"></i> The Artist</a>
+            </li>
+            <li>
+                <a href="/home/PaintingGallery"><i class="fab fa-envira"></i> Gallery</a>
             </li>
             <li><a href="#"><i class="fas fa-paint-brush"></i> Services</a></li>
             <li><a href="#"><i class="fas fa-hand-holding-usd"></i> Price</a></li>
             <li><a href="#"><i class="fas fa-address-book"></i> Contact Us</a></li>
         </ul>
-    <div>
-        @RenderBody()
-    </div>
+        <div>
+            @RenderBody()
+            <div class="row bt-footer">
+                <div class="col-md-3 col-sm-6 content-sec">
+                    <p>PRODUCTS IN Let's Paint</p>
+                    <ul>
+                        <li>Wall Painting</li>
+                        <li>Craft Items</li>
+                        <li>Paintings</li>
+                        <li>Rangoli</li>
+                    </ul>
+                </div>
+                <div class="col-md-3  col-sm-6 content-sec">
+                    <p>our services</p>
+                    <ul>
+                        <li>General Staffing</li>
+                        <li>Professional Staffing</li>
+                        <li>Outsourcing</li>
+                        <li>Hire Train Deploy</li>
+                        <li>E-Tender</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 content-sec">
+                    <p>quick links</p>
+                    <ul>
+                        <li><a href="/home/PaintingGallery">Gallery</a></li>
+                        <li><a href="/home/theartist">The Artist</a></li>
+                        <li>About Us</li>
+                        <li>Contact Us</li>
+                        <li>Term of Use</li>
+                        <li>FAQs</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 content-sec">
+                    <p>contact details</p>
+                    <ul>
+                        <li><i class="fas fa-home"></i> 14th Avenue, Gaur City 2, Greater Noida West, UP, India</li>
+                        <li><i class="fas fa-mobile-alt"></i> Phone : <a href="tel:+91-8799798300">8920521784</a></li>
+                        <li><i class="fas fa-envelope"></i> Email : <a href="mailto:info@letspaint.com">info@letspaint.com</a></li>
+                        <li class="socialsite">
+                            <a href="https://api.whatsapp.com/send?phone=918920521784&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><i class="fab fa-whatsapp-square"></i></a>
+                            <a href="https://www.facebook.com/Lets-Paint-112932870431111/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                            <a href="https://www.instagram.com/letspaintcreative/" target="_blank"><i class="fab fa-instagram-square"></i></a>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="copyright">
+                    <p>COPYRIGHT 2020. ALL RIGHTS RESERVED.</p>
+                    <p>Design and Deviloped by <span>Lets Paint Creative</span></p>
+                </div>
+            </div>
+        </div>
     <script>
         //$(document).ready(function () {
         //    $('.humbarger').on('click', function () {

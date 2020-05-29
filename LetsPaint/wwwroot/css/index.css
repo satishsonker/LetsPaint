@@ -17,13 +17,13 @@
     border: 3px solid black
 }
 
-    .product-section .col-md-3{
-        margin:10px 0px;
-    }
+.product-section .col-md-3 {
+    margin: 10px 0px;
+}
 
 .bg-image h2 {
     font-size: 39px;
-    color:black;
+    color: black;
 }
 
 .quote-container {
@@ -141,4 +141,8 @@
 }
 
 @-webkit-keyframes downAnimate {
+}
+
+.map-container {
+    padding: 10px;
 }
