@@ -109,10 +109,13 @@ body {
             }
                 .menu .right-menu ul li a {
                     color: black;
-                    font-size: 19px;
+                    font-size: 17px;
                     padding: 0px 10px;
                     text-decoration: none;
-                    transition:color 0.3s;
+                    transition: color 0.3s;
+                    background: -webkit-linear-gradient(#ea692b, #1f215d,#fab503);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
                 }
                 .menu .right-menu ul li a:hover{
                     color:red;
@@ -256,7 +259,7 @@ body {
     font-size: 14px;
     padding: 23px 15px 93px 0px;
     text-align: left;
-    width: calc(100vw + 11px);
+    width: calc(100vw + 15px);
 }
 
     .bt-footer p {

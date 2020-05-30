@@ -1,0 +1,158 @@
+﻿<form class="form">
+    <div class="form-group">
+        <div class="query-label">Queries?.. Ask Here</div>
+        <label for="username">Name</label>
+        <input type="text" class="" required id="username" name="username" aria-describedby="emailHelp" placeholder="Your name">
+
+        <label for="useremail">Email</label>
+        <input type="email" class="" required id="useremail" name="useremail" placeholder="Email">
+        <label for="useremail">Mobile</label>
+        <input type="text" class="" required id="usermobile" name="usermobile" placeholder="Mobile">
+        <label for="querycategory">Query Category</label>
+        <select id="querycategory" required class="" name="QueryType">
+            <option value="">Select</option>
+            <option value="To buy any item">To buy any item</option>
+            <option value="To sell/upload your art">To sell/upload your art</option>
+            <option value="To learn painting">To learn painting</option>
+            <option value="To enroll in Lets Paint">To enroll in Lets Paint</option>
+            <option value="Others">Others</option>
+        </select>
+        <label for="querycategory">Query</label>
+        <textarea id="query" name="query" required class="form-control" cols="90" rows="3"></textarea>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" style="width:3%;" id="chkTC">
+            <label class="form-check-label" style="width: 100px;" for="chkTC">Term &amp; Condition</label>
+        </div>
+        <div style="text-align: right;"><div id="queryMsg" class="queryMsg">Your query has been sent.</div>
+        <button type="submit" id="sendQuery" class="">Submit</button></div>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $(document).on('submit', '.form', function (e) {          
+            
+            e.preventDefault();
+            e.stopPropagation();
+            $('.queryMsg').hide();
+            var $valid = formValidation();
+            if ($valid.isValid) {
+                $(this).attr('disabled', 'disabled');
+                var $param = {};
+                $param.Username = $valid.userName;
+                $param.Usermobile = $valid.userMobile;
+                $param.UserEmail = $valid.userEmail;
+                $param.QueryType = $valid.queryCategory;
+                $param.Query = $valid.query;
+                api.http.post(url.root.query.sendQuery, $param).then(function (done) {
+
+                    $('.queryMsg').removeClass().addClass('queryMsg').addClass('form-valid').text('Your query has been sent.').show();
+                    $('#sendQuery').removeAttr('disabled');
+                    $('#username').val('');
+                    $('#useremail').val('');
+                    $('#querycategory').val('');
+                    $('#usermobile').val('');
+                    $('#query').val('');
+                }).catch(function () {
+                    $('.queryMsg').removeClass().addClass('queryMsg').addClass('form-error').text('Unable to send your query').show();
+                });
+            }
+            else {
+                $('.queryMsg').removeClass().addClass('queryMsg').addClass('form-error').text($valid.error).show();
+            }
+            return false;
+        });
+
+    });
+    const formValidation = function () {
+        var mobilePattern = new RegExp(/^[0-9]{10}$/);
+        var $data = {
+            isValid: true,
+            error: '',
+            userName: $('#username').val(),
+            userEmail: $('#useremail').val(),
+            queryCategory: $('#querycategory').val(),
+            userMobile: $('#usermobile').val(),
+            query: $('#query').val(),
+            isTC: $('#chkTC').is(':checked')
+        };
+
+        if ($data.userName.length < 3) {
+            $data.isValid = false;
+            $data.error = 'Name should be minimun 3 charector.';
+        }
+        else if ($data.userMobile.length < 10 || !mobilePattern.test($data.userMobile)) {
+            $data.isValid = false;
+            $data.error = 'Invalid mobile number.';
+        }
+        else if ($data.query.length < 50) {
+            $data.isValid = false;
+            $data.error = 'Query should contain atleast 50 charectors.';
+        }
+        else if (!$data.isTC) {
+            $data.isValid = false;
+            $data.error = 'Please accept term & conditions';
+        }
+        return $data;
+    }
+</script>
+<style>
+    .form-error{
+        color:orangered;
+    }
+    .form-valid{
+        color:forestgreen;
+    }
+    .queryMsg {
+        font-size: 13px;
+        display: none;
+        width: 74%;
+        float: left;
+        line-height: 27px;
+    }
+
+    .query-label {
+        background: #1f215d;
+        text-align: center;
+        font-size: 13px;
+        color: white;
+    }
+
+    .form button {
+        border: 1px solid #1f215d;
+        background: #1f215d;
+        color: white;
+        font-size: 14px;
+        border-radius: 4px;
+        padding: 3px 10px;
+        transition: 0.5s ease-in-out;
+    }
+
+        .form button:hover {
+            background: #fab503;
+            transition: 0.5s ease-in-out;
+        }
+
+    .form {
+        border: 1px solid wheat;
+        padding: 20px 20px 0px 20px;
+        background: white;
+        border-radius: 6px;
+    }
+
+        .form input:not([tyep="checkbox"]), select {
+            width: 100%;
+            padding: 3px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #8080805c;
+        }
+
+        .form textarea {
+            resize: none;
+        }
+
+        .form label {
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+</style>

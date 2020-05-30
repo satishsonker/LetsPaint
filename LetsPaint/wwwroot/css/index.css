@@ -120,6 +120,10 @@
         font-size: 24px;
         color: black;
     }
+    .contact-us
+    {
+        margin-right:0px !important;
+    }
 }
 
 .fa-arrow-alt-circle-down {
@@ -145,4 +149,18 @@
 
 .map-container {
     padding: 10px;
+}
+.contact-us
+{
+    background:url(../images/bg_contactus.jpg) no-repeat center center fixed;
+    background-size:100% 100%;
+}
+
+.contact-heading {
+    text-align: center;
+    color: white;
+    font-size: 23px;
+    padding: 10px 0px;
+    background: #1f215d;
+    margin: 10px 0px;
 }
