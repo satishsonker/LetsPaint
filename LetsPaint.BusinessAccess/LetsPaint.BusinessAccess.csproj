@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LetsPaint.DataAccess\LetsPaint.DataAccess.csproj" />
+    <ProjectReference Include="..\LetsPaint.Models\LetsPaint.Models.csproj" />
+  </ItemGroup>
+
+</Project>

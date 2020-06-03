@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/_webLayout.cshtml";
+}
+
+<div class="bg">
+    <div class="heading">About Us</div>
+</div>
+<div class="container career-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="heading2">About Us</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 career-data">
+            <p>
+                LetsPaintCreative.com is a platform for aspiring as well as professional artists to showcase their art & enables art lovers to buy original art online.
+            </p>
+            <p>
+                The motive behind establishing Gallerist.in was not only to bring together renowned and esteemed artists but also to provide a platform for new entrants who aspire to make a mark in the art industry.
+            </p>
+        </div>
+        <div class="col-md-6 career-logo">
+           <img src="~/images/about-us.png" />
+        </div>
+    </div>
+</div>
+
+<style>
+    .bg {
+      background: url(../images/paintingcollages_fb_cover.jpg) no-repeat center center fixed;
+    background-size: 100% 100%;
+    height: 300px;
+    width: 102%;
+    margin-top: 130px;
+    }
+
+    .career-data {
+        text-align: justify;
+    }
+
+    @@media only screen and (max-width: 900px) {
+        .heading{
+            width: 100% !important;
+        }
+       .bg {
+            width: 100% !important;
+            margin-top: 80px  !important;
+        }
+    }
+
+    .heading {
+        background: #80808073;
+        text-align: center;
+        color: black;
+        font-size: 49px;
+        position: relative;
+        width: 102%;
+        top: 39%;
+        font-family: fantasy;
+    }
+
+    .heading2 {
+        background: #1f215d;
+        text-align: left;
+        color: white;
+        font-size: 26px;
+        /* position: relative; */
+        width: 102%;
+        top: 39%;
+        font-family: fantasy;
+        padding: 0px 20px;
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+
+    .career-container {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    .career-logo img {
+        width: 100%;
+        max-height: 400px;
+    }
+</style>
+
+

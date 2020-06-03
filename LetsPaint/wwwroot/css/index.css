@@ -61,14 +61,14 @@
 .front {
     z-index: 1;
     transform: rotateY(180deg);
-    background: url(../images/Product/Painting/2_sm.jpg) no-repeat;
+    background: url(../images/Product/Painting/3_sm.jpg) no-repeat;
     background-size: 100% 100%;
 }
 
 .back {
     z-index: 2; /* back side, placed above front */
     transform: rotateY(0deg);
-    background: url(../images/Product/Painting/3_sm.jpg) no-repeat;
+    background: url(../images/Product/Painting/painting_cover_sm.jpg) no-repeat;
     background-size: 100% 100%;
 }
 

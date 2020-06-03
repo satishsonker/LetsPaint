@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetsPaint", "LetsPaint\LetsPaint.csproj", "{4EA9C84C-AC84-4F4E-B82C-1CB2E7CB5416}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LetsPaint", "LetsPaint\LetsPaint.csproj", "{4EA9C84C-AC84-4F4E-B82C-1CB2E7CB5416}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetsPaint.DataAccess", "LetsPaint.DataAccess\LetsPaint.DataAccess.csproj", "{1C4CAE03-F00B-4EDC-8032-036FC3C92FD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetsPaint.BusinessAccess", "LetsPaint.BusinessAccess\LetsPaint.BusinessAccess.csproj", "{143D56BE-288A-424B-9D16-6B66E55B2F78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LetsPaint.Models", "LetsPaint.Models\LetsPaint.Models.csproj", "{12BB2789-B35F-49E1-9150-3F0C6D3BCB35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{4EA9C84C-AC84-4F4E-B82C-1CB2E7CB5416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EA9C84C-AC84-4F4E-B82C-1CB2E7CB5416}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EA9C84C-AC84-4F4E-B82C-1CB2E7CB5416}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C4CAE03-F00B-4EDC-8032-036FC3C92FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C4CAE03-F00B-4EDC-8032-036FC3C92FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C4CAE03-F00B-4EDC-8032-036FC3C92FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C4CAE03-F00B-4EDC-8032-036FC3C92FD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{143D56BE-288A-424B-9D16-6B66E55B2F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143D56BE-288A-424B-9D16-6B66E55B2F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143D56BE-288A-424B-9D16-6B66E55B2F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143D56BE-288A-424B-9D16-6B66E55B2F78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12BB2789-B35F-49E1-9150-3F0C6D3BCB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12BB2789-B35F-49E1-9150-3F0C6D3BCB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12BB2789-B35F-49E1-9150-3F0C6D3BCB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12BB2789-B35F-49E1-9150-3F0C6D3BCB35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

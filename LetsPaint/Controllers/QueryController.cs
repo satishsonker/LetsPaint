@@ -18,11 +18,18 @@ namespace LetsPaint.Controllers
         [HttpPost]
         public JsonResult SendQuery([FromBody] QueryModel queryModel)
         {
-            var temp =System.IO.File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(),"emailTemplate", "query.html"));
-            var message = new Message(new string[] { "btech.csit@gmail.com", "sonkarpoonam41@gmail.com" }, "User Query from Let's Paint - "+queryModel.UserName, temp.Replace("##querytype##", queryModel.QueryType).Replace("##email##", queryModel.UserEmail).Replace("##name##", queryModel.UserName).Replace("##userquery##", queryModel.Query).Replace("##mobile##", queryModel.UserMobile));
-            _emailSender.SendEmail(message);
+            try
+            {
+                var temp = System.IO.File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "emailTemplate", "query.html"));
+                var message = new Message(new string[] { "btech.csit@gmail.com", "sonkarpoonam41@gmail.com" }, "User Query from Let's Paint - " + queryModel.UserName, temp.Replace("##querytype##", queryModel.QueryType).Replace("##email##", queryModel.UserEmail).Replace("##name##", queryModel.UserName).Replace("##userquery##", queryModel.Query).Replace("##mobile##", queryModel.UserMobile));
+                _emailSender.SendEmail(message);
 
-            return Json(new { });
+                return Json("Sent");
+            }
+            catch (Exception ex)
+            {
+                return Json(new { ex});
+            }
         }
     }
 }

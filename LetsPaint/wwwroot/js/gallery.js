@@ -29,14 +29,17 @@ function bindGallery($galId) {
         } if (ind % $galData[0].gridSize === 0 && ind !== 0) {
             $list += '</div><div class="row">';
         }
-        $list += `<div class="col-md">
-                <a class="gallery-item" href="${$galData[0].baseUrl}${ele.image}" data-lightbox="mygallery">
+        $list += `<div class="col-md-3">
+               
                     <div class="gallery-container">
-                        <div class="overlay-artist">Artist - ${ele.artist}</div>
+                       <a href="/home/theartist">
+<div class="overlay-artist">Artist - ${ele.artist}</div> </a>
+<a class="gallery-item" href="${$galData[0].baseUrl}${ele.image}" data-lightbox="mygallery">
                         <img src="${$galData[0].baseUrl}${ele.thumbnail}" class="image" />
+  </a>
                         <div class="overlay">${ele.title}</div>
                     </div>
-                </a>
+              
             </div>`;
 
     });
