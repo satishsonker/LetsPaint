@@ -3,6 +3,7 @@
     margin: 0;
    
 }
+
 .socialShare {
     padding: 0;
     /* margin: -23px 0 0 0px; */
@@ -83,7 +84,7 @@ body {
 }
 
 .menu .left-menu{
-    width:25%;
+    width:10%;
     float:left;
 }
     .menu .left-menu img {
@@ -94,7 +95,7 @@ body {
 
     .menu .right-menu {
        float:right;
-        width: 75%;
+        width: 85%;
     }
 
         .menu .right-menu ul {
@@ -126,7 +127,15 @@ body {
     transition: display 0.5s;
 }
 
-@media only screen and (max-width: 900px) {
+.mobile
+{
+    display:none;
+}
+
+@media only screen and (max-width: 850px) {
+    .mobile{
+        display: block !important;
+    }
     .artist-bio {
         padding-top: 20px;
     }
@@ -140,6 +149,7 @@ body {
     .socialShare {
         float: right;
         position: inherit;
+        margin: 0px 52px 0 0px;
     }
         .socialShare ul {
             line-height: 32px !important;
@@ -335,3 +345,37 @@ body {
                 transition: 1s;
             }
 
+.sub-heading {
+    width: 100%;
+    background: #ff884f;
+    border: 1px solid #ff884f;
+    border-radius: 4px;
+    margin: 31px 0 10px 0;
+    padding: 5px 10px;
+}
+.mar-top20{
+    margin-top:20px;
+}
+.mar-bottom20 {
+    margin-bottom: 20px;
+}
+
+.lp-loader {
+    top: 49%;
+    position: fixed;
+    background: white;
+    z-index: 9999909999;
+    left: 49%;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 4px 4px 8px #1f215d;
+    display:none;
+}
+
+    .lp-loader img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .lp-loader i {
+    }

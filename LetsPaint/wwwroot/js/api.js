@@ -2,13 +2,20 @@
 
 
 const apiGet = function (url, success) {
-    $.ajax({
-        type: 'GET',
-        url: baseUrl+url,
-        contentType: 'application/json',
-        dataType:'json',
-        success: success,
-        error: apiError
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            type: 'GET',
+            url: baseUrl + url,
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (data, responseText, jqXHR) {
+                resolve(data);
+            },
+            error: function (z,y,z) {
+                reject(z, y, z);
+                apiError(z, y, z);
+        }
+        });
     });
 }
 

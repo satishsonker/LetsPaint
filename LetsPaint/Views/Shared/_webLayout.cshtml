@@ -22,7 +22,7 @@
         <div class="right-menu">
             <div class="socialShare">
                 <ul>
-                    <li title="Call"><a href="tel:+91-8920521784"><img src="~/images/call.png" /></a></li>
+                    <li class="mobile" title="Call"><a href="tel:+91-8920521784"><img src="~/images/call.png" /></a></li>
                     <li title="WhatsApp"><a href="https://api.whatsapp.com/send?phone=918920521784&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><img src="~/images/whatsapp.png" /></a></li>
                     @*<li title="Youtube"><a href=""><img src="~/images/youtube.png" /></a></li>*@
                     <li title="Facebook"><a href="https://www.facebook.com/Lets-Paint-112932870431111" target="_blank"><img src="~/images/facebook.png" /></a></li>
@@ -97,8 +97,9 @@
                 <ul>
                     <li><i class="fas fa-home"></i> 14th Avenue, Gaur City 2, Greater Noida West, UP, India</li>
                     <li><i class="fas fa-mobile-alt"></i> Phone : <a href="tel:+91-8799798300">8920521784</a></li>
-                    <li><i class="fas fa-envelope"></i> Email : <a href="mailto:info@letspaint.com">info@letspaint.com</a></li>
+                    <li><i class="fas fa-envelope"></i> Email : <a href="mailto:support@letspaintcreative.com">support@letspaintcreative.com</a></li>
                     <li class="socialsite">
+                        <a href="tel:+91-9891674974" class="mobile" style="float: left;width: 20px;margin-right: 4px;"><i class="fas fa-phone-square-alt"></i></a>
                         <a href="https://api.whatsapp.com/send?phone=918920521784&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><i class="fab fa-whatsapp-square"></i></a>
                         <a href="https://www.facebook.com/Lets-Paint-112932870431111/" target="_blank"><i class="fab fa-facebook-square"></i></a>
                         <a href="https://www.instagram.com/letspaintcreative/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -113,7 +114,9 @@
             </div>
         </div>
     </div>
-
+    <div class="lp-loader">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    </div>
     <script>
         //$(document).ready(function () {
         //    $('.humbarger').on('click', function () {
@@ -131,10 +134,10 @@
         function scrollFunction() {
             if (window.innerWidth > 768) {
                 if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-                    $("#navbar").css({ 'padding': '0px', 'background': '#ffffff' });
-                    $('.menu .left-menu img').css({ 'padding': '17px 16px' });
+                    $("#navbar").css({ 'padding': '10px 15px', 'background': '#ffffff' });
+                    $('.menu .left-menu img').css({ 'padding': '5px 10px' });
                 } else {
-                    $("#navbar").css({ 'padding': '25px 0px', 'background': '#ffffffc7' });
+                    $("#navbar").css({ 'padding': '25px 15px', 'background': '#ffffffc7' });
                     $('.menu .left-menu img').css({ 'padding': '0px' });
                 }
             }
@@ -148,11 +151,19 @@
             }
         }
         $(document).mouseup(function (e) {
-            $('.mobile-menu').addClass('mobile-menu-hidden');
+            if ($('.mobile-menu').is(':visible')) {
+                $('.mobile-menu').addClass('mobile-menu-hidden');
+                $('.humbarger').addClass('fa-bars').removeClass('fa-times');
+            }
         });
         $(document).on('click', '.humbarger', function () {
-            $(this).toggleClass('fa-bars').toggleClass('fa-times');
-            $('.mobile-menu').toggleClass('mobile-menu-hidden');
+            if ($('.mobile-menu').is(':visible')) {
+                $(this).addClass('fa-bars').removeClass('fa-times');
+                $('.mobile-menu').addClass('mobile-menu-hidden');
+            } else {
+                 $(this).removeClass('fa-bars').addClass('fa-times'); $('.mobile-menu').removeClass('mobile-menu-hidden');
+            }
+            
         });
 
         $('a[href*="#"]')

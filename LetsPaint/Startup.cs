@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LetsPaint.DataAccess;
 using LetsPaint.Filters;
+using LetsPaint.ModelAccess.Models;
 using LetsPaint.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

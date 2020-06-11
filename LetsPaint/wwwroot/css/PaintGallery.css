@@ -13,9 +13,14 @@
 .gallery {
     margin: 10px 50px;
 }
-.gallery .gallery-item
+.gallery-item
 {
+    object-fit:cover;
+    width:300px;
+}
 
+.gallery-item img{
+    height: 150px;
 }
     .gallery .gallery-item .title {
         width: 100%;
@@ -37,13 +42,13 @@
 }
 
     .gallery .gallery-item img:hover {
-        filter: grayscale(0%);
-        transform: scale(1.1);
+        /*filter: grayscale(0%);
+        transform: scale(1.1);*/
     }
 
     .gallery .gallery-item img span {
-        filter: grayscale(0%);
-        transform: scale(1.1);
+        /*filter: grayscale(0%);
+        transform: scale(1.1);*/
     }
 
 
@@ -57,6 +62,9 @@
 }
 
 @media only screen and (max-width: 900px) {
+    .p-col {
+        margin-bottom: 20px;
+    }
     .overlay, .overlay-artist {
         opacity: 1 !important;
     }
@@ -88,6 +96,31 @@
 {
 
 }
+.new-badge {
+    position: absolute;
+    border: 1px solid red;
+    background: red;
+    border-radius: 3px;
+    padding: 2px;
+    height: 16px;
+    font-size: 10px;
+    width: auto;
+    color:white;
+    top: 4px;
+    left: 4px;
+    line-height:10px;
+}
+
+.img-ctrl {
+    float: right;
+}
+    .img-ctrl i {
+        padding-right: 10px;
+        cursor:pointer;
+    }
+    .img-ctrl i span {
+       padding:0 2px;
+    }
 
 .gallery-container {
     position: relative;
@@ -105,24 +138,24 @@
     .gallery-container .image {
         display: block;
         width: 100%;
-        height: auto;
+        min-height: 150px;
     }
 
 /* The overlay effect - lays on top of the container and over the image */
-.gallery-container .overlay {
-    position: absolute;
-    bottom: 0;
-    background: rgb(0, 0, 0);
-    background: rgba(0, 0, 0, 0.5); /* Black see-through */
-    color: #f1f1f1;
-    width: 100%;
-    transition: .5s ease;
-    opacity: 0;
-    color: white;
-    font-size: 11px;
-    padding: 0px;
-    text-align: center;
-}
+    .gallery-container .overlay {
+        position: absolute;
+        bottom: 0;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5); /* Black see-through */
+        color: #f1f1f1;
+        width: 100%;
+        transition: .5s ease;
+        opacity: 1;
+        color: white;
+        font-size: 11px;
+        padding: 5px;
+        text-align: left;
+    }
 
     .gallery-container .overlay-artist {
         position: absolute;
@@ -151,7 +184,7 @@
 
     .gallery-container:hover {
         opacity: 1;
-        transition: 1s ease-in-out;
+        transition: .5s ease-in-out;
         transform: scale(1.1);
     }
 

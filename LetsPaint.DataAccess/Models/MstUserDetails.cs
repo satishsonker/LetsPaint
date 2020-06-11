@@ -15,6 +15,7 @@ namespace LetsPaint.DataAccess.Models
         public DateTime CreatedDate { get; set; }
         public int? ModifiedBy { get; set; }
         public DateTime? ModifiedDate { get; set; }
+        public string Photo { get; set; }
 
         public virtual MstUsers User { get; set; }
     }

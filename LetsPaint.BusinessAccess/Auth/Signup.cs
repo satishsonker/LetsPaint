@@ -3,6 +3,7 @@ using LetsPaint.ModelAccess.Auth;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using LetsPaint.ModelAccess;
 
 namespace LetsPaint.BusinessAccess.Auth
 {
@@ -14,7 +15,7 @@ namespace LetsPaint.BusinessAccess.Auth
             _db = new LetsPaintContext();
         }
 
-        public bool SaveSignUp(SignupModel signupModel)
+        public MstUsers SaveSignUp(SignupModel signupModel)
         {
             MstUsers mstUsers = new MstUsers()
             {
@@ -33,7 +34,25 @@ namespace LetsPaint.BusinessAccess.Auth
                 UserTypeId = signupModel.UserType
             };
             _db.MstUsers.Add(mstUsers);
-           return _db.SaveChanges()>0?true:false;
+            _db.SaveChanges();
+           return mstUsers;
+        }
+
+        public bool SaveProfile(UserProfileModel userProfileModel)
+        {
+            MstUserDetails mstUserDetails = new MstUserDetails()
+            {
+                CreatedBy = 1,
+                CreatedDate = DateTime.Now,
+                FacebookProfile = userProfileModel.FacebookProfile,
+                InstagramProfile = userProfileModel.InstagramProfile,
+                IsActive = true,
+                UserId = userProfileModel.UserId,
+                Website = userProfileModel.Website,
+                Photo = userProfileModel.Photo
+            };
+            _db.MstUserDetails.Add(mstUserDetails);
+            return _db.SaveChanges() > 0 ? true : false;
         }
 
     }

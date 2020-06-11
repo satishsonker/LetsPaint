@@ -1,10 +1,10 @@
-﻿const galleries = [
+﻿let galleries = [
     { id: 1, name: 'Painting', baseUrl: "/images/Product/Painting/", gridSize: 4 },
     { id: 2, name: 'Craft', baseUrl: "/images/Product/Craft/", gridSize: 4 },
     { id: 3, name: 'Rangoli', baseUrl: "/images/Product/Rangoli/", gridSize: 3 },
     { id: 4, name: 'Wall Painting', baseUrl: "/images/Product/WallPainting/", gridSize: 4 }
 ];
-const galleryData = [
+let galleryData = [
     { id: 1, galleryId: 1, title: "Madhubani Art", thumbnail: "14_sm.jpg", image: "14.jpeg", badge: "New",artist:"Poonam Sonkar"},
     { id: 2, galleryId: 1, title: "African Women", thumbnail: "1_sm.jpg", image: "1.jpeg", badge: "New",artist:"Poonam Sonkar" },
     { id: 3, galleryId: 1, title: "Birds", thumbnail: "2_sm.jpg", image: "2.jpg", badge: "New",artist:"Poonam Sonkar" },
@@ -19,6 +19,7 @@ const galleryData = [
     { id: 12, galleryId: 1, title: "Immortal Hanuman", thumbnail: "11_sm.jpg", image: "11.jpg", badge: "New",artist:"Poonam Sonkar" },
     { id: 12, galleryId: 1, title: "Floral Design", thumbnail: "12_sm.jpeg", image: "12.jpeg", badge: "New", artist: "Poonam Sonkar" },
     { id: 27, galleryId: 1, title: "Lord Kirshna", thumbnail: "15_sm.jpg", image: "15.jpg", badge: "New", artist: "Poonam Sonkar" },
+    { id: 28, galleryId: 1, title: "Mordern Art", thumbnail: "16_sm.jpg", image: "16.jpg", badge: "New", artist: "Poonam Sonkar" },
 
     { id: 25, galleryId: 2, title: "Photo Frame", thumbnail: "5_sm.jpg", image: "5.jpg", badge: "New", artist: "Poonam Sonkar" },
     { id: 13, galleryId: 2, title: "Egg Shell-Smiley", thumbnail: "4_sm.jpg", image: "4.jpeg", badge: "New",artist:"Poonam Sonkar" },

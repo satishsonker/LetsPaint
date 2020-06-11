@@ -17,26 +17,50 @@
             <div class="s-c" id="accordionExample">
                 <div class="s-menu">
                     <ul>
-                        <li data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Learning Art</li>
-                        <li data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1">Sell Your Creativity</li>
+                        <li class="active" data-target="#collapseOne">Learn Art/ Craft</li>
+                        <li data-target="#collapseOne1">Sell Your Creativity</li>
+                        <li data-target="#collapseOne2">Painting Showcase</li>
                     </ul>
                 </div>
                 <div class="s-data">
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</div>
-                    <div id="collapseOne1" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</div>
+                    <div id="collapseOne" class="s-data-div">
+                        Skillshare is an online learning community where you can enroll in online classes that help you hone your creative and business skills. This is a great resource if you’re interested in learning or improving upon a particular skill like illustrating vector art, working with brush lettering, editing your photography, learning how to freelance, etc.
+
+                        Your membership will give you unlimited access to all 17,000+ classes. Each class is broken down into sections with individual videos, so you can learn at your own pace. Students are encouraged to participate as well– there are open discussion boards so you can ask questions and project galleries where you can upload works-in-progress.
+                    </div>
+                    <div id="collapseOne1" class="s-data-div">An art dealer typically seeks out various artists to represent, and builds relationships with collectors and museums whose interests are likely to match the work of the represented artists. ... When dealers buy works of art, they resell them either in their galleries or directly to collectors</div>
+                    <div id="collapseOne2" class="s-data-div">With the valuable assistance of skilled team of professionals, we are engaged in offering an extensive range of high quality Art Gallery Interior Designers Service</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 career-logo">
-            <img src="~/images/about-us.png" />
+            <div class="s-text">Services</div>
+            <img src="~/images/service1.png" />
         </div>
     </div>
 </div>
 
 <style>
+    .s-data-div
+    {
+        display:none;
+    }
+    .s-text{
+        font-family: monospace;
+    position: absolute;
+    bottom: 85px;
+    z-index: -1;
+    left: 27%;
+    font-size: 56px;
+    color: #bacc99;
+    }
     .s-c
     {
 
+    }
+    .s-c .active
+    {
+        background:#1f215d !important;
     }
     .s-c .s-menu
     {
@@ -60,7 +84,7 @@
     line-height: 35px;
     padding: 2px 10px;
     background: rebeccapurple;
-    transition:1s ease-in-out;
+    transition:0.5s ease-in-out;
     cursor:pointer;
     }
      .s-c .s-menu ul li:hover{
@@ -71,6 +95,11 @@
         width: 100%;
     min-height: 240px;
     border: 1px solid #80808033;
+    }
+    
+    .s-data-div
+    {
+      padding: 10px;
     }
     .bg {
         background: url(../images/paintingcollages_fb_cover.jpg) no-repeat center center fixed;
@@ -130,4 +159,16 @@
         max-height: 400px;
     }
 </style>
+
+<script>
+    $(document).on('click', '.s-menu ul li', function () {
+        $('.s-menu ul li').removeClass('active');
+        $(this).addClass('active');
+        $('.s-data-div').hide();
+        $($(this).data('target')).show();
+    });
+    $(document).ready(function () {
+        $('.s-data-div:eq(0)').show();
+    });
+</script>
 

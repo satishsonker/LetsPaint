@@ -9,6 +9,18 @@ const url = {
         home: {},
         query: {
             sendQuery:'/query/sendQuery'
+        },
+        gallery: {
+            getgalleryType: '/gallery/getgalleryType',
+            getGallery: '/gallery/getgallery',
         }
     }
 }
+
+$(document).ajaxStart(function () {
+    $('.lp-loader').show();
+});
+
+$(document).ajaxComplete(function () {
+    $('.lp-loader').hide();
+});

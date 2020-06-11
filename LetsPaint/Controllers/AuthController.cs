@@ -25,11 +25,43 @@ namespace LetsPaint.Controllers
         [HttpPost]
         public IActionResult SaveSignup(SignupModel signupModel)
         {
-            SignupDetails signupDetails = new SignupDetails();
-            if (signupDetails.SaveSignUp(signupModel))
+            if(ModelState.IsValid)
+            {
+                SignupDetails signupDetails = new SignupDetails();
+                var userdata = signupDetails.SaveSignUp(signupModel);
+                if (userdata.UserId > 0)
+                {
+                    signupModel.UserId = userdata.UserId;
+                    return View("CompleteProfile", userdata);
+                }
+                else
+                {
+                    DropdownData dropdownData = new DropdownData();
+                    return View("Signup", dropdownData.Get("usertype"));
+                }
+            }
+            else
             {
                 DropdownData dropdownData = new DropdownData();
                 return View("Signup", dropdownData.Get("usertype"));
+            }
+        }
+
+        [HttpGet]
+        public IActionResult CompleteProfile()
+        {
+            DropdownData dropdownData = new DropdownData();
+            return View(dropdownData.Get("usertype"));
+        }
+
+        [HttpPost]
+        public IActionResult SaveProfile([FromForm] UserProfileModel userProfileModel)
+        {
+            SignupDetails signupDetails = new SignupDetails();
+            if (signupDetails.SaveProfile(userProfileModel))
+            {
+                DropdownData dropdownData = new DropdownData();
+                return View("~/views/home/index.cshtml");
             }
             else
             {

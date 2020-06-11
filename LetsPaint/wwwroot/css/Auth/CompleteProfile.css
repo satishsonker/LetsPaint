@@ -1,0 +1,102 @@
+﻿.mar-top-134
+{
+    margin-top:134px;
+}
+
+.CompleteProfile-container {
+    min-height: 100vh;
+    border: 1px solid #e4e4e4;
+    border-radius: 6px;
+    box-shadow: 1px 1px 7px 1px #80808082;
+    margin-bottom:20px;
+}
+
+    .CompleteProfile-container h6 {
+        padding: 10px;
+        background: #1f215d;
+        color: white;
+        text-align: center;
+        margin-top: 10px;
+        border-radius: 6px;
+    }
+
+.profile-img-container {
+    width: 203px;
+    height: 203px;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid;
+    border-radius: 200px;
+    overflow: hidden;
+}
+    .profile-img-container img {
+        width: 200px;
+        height: 200px;
+        border-radius:200px;
+    }
+
+    .profile-img-container .crtl {
+        position: relative;
+        text-align: center;
+        width: 100%;
+        bottom: 42px;
+        background: #808080a3;
+        padding: 10px 0;
+        transition: .5s;
+        transition-property: opacity;
+        opacity: 0;
+    }
+        .profile-img-container .crtl i {
+            margin-left: 10px;
+            cursor: pointer;
+            transition:.5s;
+        }
+
+        .profile-img-container .crtl i:hover {
+            color:white;
+        }
+
+    .profile-img-container img:hover + .crtl {
+        opacity: 1;
+        transition: .5s;
+        transition-property: opacity;
+    }
+
+.crtl:hover {
+    opacity: 1;
+    transition: .5s;
+    transition-property: opacity;
+}
+.form-group label
+{
+    font-size:13px;
+    color:gray;
+    margin-bottom:2px;
+}
+
+.form-group{
+    margin-bottom:0px !important;
+}
+
+.i-verify, .i-unverify {
+    position: absolute;
+    right: 14px;
+}
+
+.i-verify
+{
+    color:forestgreen;
+}
+.i-unverify {
+    color:orange;
+}
+.form-inline
+{
+    margin-top:10px;
+}
+
+    .form-inline input, .form-inline button{
+        margin-right: 10px;
+    }
+
+   

@@ -1,4 +1,5 @@
-﻿using MailKit.Net.Smtp;
+﻿
+using MailKit.Net.Smtp;
 using MimeKit;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LetsPaint.Models
+namespace LetsPaint.ModelAccess.Models
 {
     public class EmailClient
     {
@@ -14,7 +15,7 @@ namespace LetsPaint.Models
     }
     public class Message
     {
-        public List<MailboxAddress> To { get; set; }
+       public List<MailboxAddress> To { get; set; }
         public string Subject { get; set; }
         public string Content { get; set; }
 
@@ -51,9 +52,9 @@ namespace LetsPaint.Models
 
         public void SendEmail(Message message)
         {
-            var emailMessage = CreateEmailMessage(message);
+            //var emailMessage = CreateEmailMessage(message);
 
-            Send(emailMessage);
+            //Send(emailMessage);
         }
 
         private MimeMessage CreateEmailMessage(Message message)
@@ -61,7 +62,7 @@ namespace LetsPaint.Models
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress(_emailConfig.From));
             emailMessage.To.AddRange(message.To);
-            emailMessage.Subject = message.Subject;           
+            emailMessage.Subject = message.Subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = message.Content };
 
             return emailMessage;

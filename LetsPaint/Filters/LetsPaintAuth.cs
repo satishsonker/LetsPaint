@@ -1,4 +1,4 @@
-﻿using LetsPaint.Models;
+﻿using LetsPaint.ModelAccess.Auth;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;

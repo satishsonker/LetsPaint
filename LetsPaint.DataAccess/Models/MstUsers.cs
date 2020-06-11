@@ -7,6 +7,9 @@ namespace LetsPaint.DataAccess.Models
     {
         public MstUsers()
         {
+            MstGalleryArtist = new HashSet<MstGallery>();
+            MstGalleryCreatedByNavigation = new HashSet<MstGallery>();
+            MstRefLookup = new HashSet<MstRefLookup>();
             MstUserDetails = new HashSet<MstUserDetails>();
         }
 
@@ -14,6 +17,7 @@ namespace LetsPaint.DataAccess.Models
         public int UserTypeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Gender { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
         public DateTime? LastLogin { get; set; }
@@ -32,6 +36,9 @@ namespace LetsPaint.DataAccess.Models
         public DateTime? ModifiedDate { get; set; }
 
         public virtual MstUserType UserType { get; set; }
+        public virtual ICollection<MstGallery> MstGalleryArtist { get; set; }
+        public virtual ICollection<MstGallery> MstGalleryCreatedByNavigation { get; set; }
+        public virtual ICollection<MstRefLookup> MstRefLookup { get; set; }
         public virtual ICollection<MstUserDetails> MstUserDetails { get; set; }
     }
 }
