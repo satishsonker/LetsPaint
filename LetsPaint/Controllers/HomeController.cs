@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LetsPaint.Models;
+using LetsPaint.ModelAccess.Common;
+using Newtonsoft.Json;
 
 namespace LetsPaint.Controllers
 {
@@ -12,6 +14,12 @@ namespace LetsPaint.Controllers
     {       
         public IActionResult Index()
         {
+            HttpContext.Session.SetObjectAsJson("test", "asd");
+            var loginData = TempData["loginData"];
+            if (loginData != null)
+            {
+                ApiResponseModel tenant =JsonConvert.DeserializeObject<ApiResponseModel>(TempData["loginData"].ToString());
+            }
             return View();
         }
 
@@ -46,10 +54,10 @@ namespace LetsPaint.Controllers
         {
             return View();
         }
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

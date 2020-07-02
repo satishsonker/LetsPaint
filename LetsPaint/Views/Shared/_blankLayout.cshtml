@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+@using LetsPaint.ModelAccess.Common;
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/css/weblayout.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/js/apiUrls.js"></script>
+    <script src="~/js/api.js"></script>
+    <script src="~/js/common.js"></script>
+    <script src="~/js/blankLayout.js"></script>
+</head>
+<body>
+    <div>
+        @RenderBody()
+        <div class="row bt-footer">
+            <div class="col-md-3 col-sm-6 content-sec">
+                <p>Art item IN Let's Paint</p>
+                <ul>
+                    <li>Wall Painting</li>
+                    <li>Craft Items</li>
+                    <li>Paintings</li>
+                    <li>Rangoli</li>
+                    <li>Name Plate</li>
+                </ul>
+            </div>
+            <div class="col-md-3  col-sm-6 content-sec">
+
+                <p>our services</p>
+                <ul>
+                    <li> <a href="/home/services">Art/Craft Learning </a></li>
+                    <li><a href="/home/services">Sell Your Creativity </a></li>
+                    <li><a href="/home/services">Painting Showcase </a></li>
+                </ul>
+
+            </div>
+            <div class="col-md-3 col-sm-6 content-sec">
+                <p>quick links</p>
+                <ul>
+                    <li><a href="/home/PaintingGallery">Gallery</a></li>
+                    <li><a href="/home/theartist">The Artist</a></li>
+                    <li><a href="/home/aboutUs">About Us</a></li>
+                    <li><a href="/home/index#contactUs">Contact Us</a></li>
+                    <li>Term of Use</li>
+                    <li>FAQs</li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-6 content-sec">
+                <p>contact details</p>
+                <ul>
+                    <li><i class="fas fa-home"></i> 14th Avenue, Gaur City 2, Greater Noida West, UP, India</li>
+                    <li><i class="fas fa-mobile-alt"></i> Phone : <a href="tel:+91-8799798300">8920521784</a></li>
+                    <li><i class="fas fa-envelope"></i> Email : <a style="word-break: break-all;" href="mailto:support@letspaintcreative.com">support@letspaintcreative.com</a></li>
+                    <li class="socialsite">
+                        <a href="tel:+91-9891674974" class="mobile" style="float: left;width: 20px;margin-right: 4px;"><i class="fas fa-phone-square-alt"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=918920521784&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><i class="fab fa-whatsapp-square"></i></a>
+                        <a href="https://www.facebook.com/Lets-Paint-112932870431111/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                        <a href="https://www.instagram.com/letspaintcreative/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://m.me/letspaintcreative" target="_blank"><i class="fab fa-facebook-messenger"></i></a>
+                        <a href="https://twitter.com/LetsPaintCreat1" target="_blank"><i class="fab fa-twitter-square"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="copyright">
+                <p>COPYRIGHT 2020. ALL RIGHTS RESERVED.</p>
+                <p>Design and Deviloped by <span>Lets Paint Creative</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="lp-loader">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    </div>
+</body>
+</html>

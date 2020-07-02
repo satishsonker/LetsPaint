@@ -7,6 +7,10 @@ if (location.host.indexOf('localhost') > -1) {
 const url = {
     root: {
         home: {},
+        auth: {
+            changePassword: '/auth/changePassword',
+            isEmailexist:'/auth/isEmailexist'
+        },
         query: {
             sendQuery:'/query/sendQuery'
         },

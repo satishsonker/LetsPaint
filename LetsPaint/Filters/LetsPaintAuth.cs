@@ -1,5 +1,6 @@
 ﻿using LetsPaint.ModelAccess.Auth;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
@@ -8,26 +9,21 @@ using System.Threading.Tasks;
 
 namespace LetsPaint.Filters
 {
-    public class LetsPaintAuth : IActionFilter
+    public class LetsPaintAuthAttribute :Attribute, IActionFilter
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        private ISession _session => _httpContextAccessor.HttpContext.Session;
-
-        public LetsPaintAuth(IHttpContextAccessor httpContextAccessor)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
         public void OnActionExecuting(ActionExecutingContext context)
         {
-           var model= _session.GetObjectFromJson<UserModel>("UserAuth");
-            if(model==null || model.UserId<0)
+            
+            var model = context.HttpContext.Session.GetObjectFromJson<LoginOutputModel>("loginData");
+            if (model != null && string.IsNullOrEmpty(model.Email))
             {
-                return;
+                context.Result = new RedirectToRouteResult("/viwes/shared/unauthorised.cshtml");
             }
         }
+
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            // do something after the action executes
+           
         }
     }
 }

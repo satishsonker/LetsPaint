@@ -24,4 +24,16 @@ namespace LetsPaint.ModelAccess.Auth
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
     }
+    public class LoginOutputModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Mobile { get; set; }
+        public string Photo { get; set; }
+        public int UserId { get; set; }
+        public bool IsEmailVarified { get; set; }
+        public bool IsMobileVarified { get; set; }
+        public bool IsBlocked { get; set; }
+    }
 }

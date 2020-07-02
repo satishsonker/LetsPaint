@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LetsPaint.DataAccess\LetsPaint.DataAccess.csproj" />
     <ProjectReference Include="..\LetsPaint.Models\LetsPaint.Models.csproj" />
+    <ProjectReference Include="..\UtilityManager\UtilityManager.csproj" />
   </ItemGroup>
 
 </Project>

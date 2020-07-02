@@ -2,105 +2,118 @@
 @model List<SelectListModel>
 @{
     ViewData["Title"] = "Signup";
+    
+    Layout = "~/Views/Shared/_blankLayout.cshtml";
 
 }
+
 <link href="~/css/Auth/signup.css" rel="stylesheet" />
-<div class="container">
-    <div class="row">
-        <div class="col-md vc">
-            <div class="lp-logo">
-                <a href="/home/index">
-                    <img src="~/images/logo_md_trans.png" alt="Lets Paint Creative" />
-                </a>
-            </div>
-            <hr />
-            <p>Create Account</p>
-            <div class="f8n">
-                <div class="f8o">
-                    <span class="i7 i9 id" style="font-weight: 400;">Connect quickly using</span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md vc">
+                <div class="lp-logo">
+                    <a href="/home/index">
+                        <img src="~/images/logo_md_trans.png" alt="Lets Paint Creative" />
+                    </a>
                 </div>
-                <div class="f8o">
-                    <div>
-                        <div class="ff9">
-                            <button class="ffa ffc" data-qa="loginFacebook">
-                                <div class="ffb">
-                                    <svg viewBox="0 0 32 32">
-                                        <path d="M13.81,26V16.92H10.75V13.21h3.06V10.1A4.1,4.1,0,0,1,17.91,6h3.2V9.33H18.82a1.3,1.3,0,0,0-1.3,1.3v2.58H21l-0.49,3.71h-3V26"></path>
-                                    </svg>
-                                </div><div><span class="i7 i9 if" style="font-weight: 400;">Facebook</span></div>
-                            </button><a class="ffa ffd" data-qa="loginGoogle" href=""><div class="ffb"><svg viewBox="0 0 32 32"><path d="M23.4,17.5a6.91,6.91,0,0,1-7.2,6.1,7.6,7.6,0,0,1,0-15.2h0a7.44,7.44,0,0,1,5.1,2l-2.2,2.2a3.56,3.56,0,0,0-2.9-1.1A4.55,4.55,0,0,0,11.7,16a4.48,4.48,0,0,0,4.5,4.5,3.82,3.82,0,0,0,4.1-3H16.2v-3h7.2a7.72,7.72,0,0,1,.2,1.5c-0.1.5-.1,1-0.2,1.5h0Z"></path></svg></div><div><span class="i7 i9 if" style="font-weight: 400;">Google</span></div></a>
+                <hr />
+                <p>Create Account</p>
+                <div class="f8n">
+                    <div class="f8o">
+                        <span class="i7 i9 id" style="font-weight: 400;">Connect quickly using</span>
+                    </div>
+                    <div class="f8o">
+                        <div>
+                            <div class="ff9">
+                                <button class="ffa ffc" data-qa="loginFacebook">
+                                    <div class="ffb">
+                                        <svg viewBox="0 0 32 32">
+                                            <path d="M13.81,26V16.92H10.75V13.21h3.06V10.1A4.1,4.1,0,0,1,17.91,6h3.2V9.33H18.82a1.3,1.3,0,0,0-1.3,1.3v2.58H21l-0.49,3.71h-3V26"></path>
+                                        </svg>
+                                    </div><div><span class="i7 i9 if" style="font-weight: 400;">Facebook</span></div>
+                                </button><a class="ffa ffd" data-qa="loginGoogle" href=""><div class="ffb"><svg viewBox="0 0 32 32"><path d="M23.4,17.5a6.91,6.91,0,0,1-7.2,6.1,7.6,7.6,0,0,1,0-15.2h0a7.44,7.44,0,0,1,5.1,2l-2.2,2.2a3.56,3.56,0,0,0-2.9-1.1A4.55,4.55,0,0,0,11.7,16a4.48,4.48,0,0,0,4.5,4.5,3.82,3.82,0,0,0,4.1-3H16.2v-3h7.2a7.72,7.72,0,0,1,.2,1.5c-0.1.5-.1,1-0.2,1.5h0Z"></path></svg></div><div><span class="i7 i9 if" style="font-weight: 400;">Google</span></div></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="f8o">
-                    <span class="i7 i9 id" style="font-weight: 400;">Or use your email</span>
-                   
-                </div>
-                <div class="f8o">
-                    <div class="f8p">
-                        <form method="POST" asp-action="SaveSignup" asp-controller="auth">
-                            <input type="email" class="f93">
-                            <input type="password" class="f93">
-                            <div class="f8o">
-                                <select class="jl jm jp" required  style="width: 100%;" name="usertype">
-                                    <option value="">Select Accout Type</option>
-                                    @{foreach (var item in Model)
-                                        {
-                                            <option value="@item.Value">@item.Text</option>
-                                        } }
-                                </select>
-                                <div class="f8r">
-                                    <span class="i7 i8 ig" style="font-weight: 400;"></span>
+                    <div class="f8o">
+                        <span class="i7 i9 id" style="font-weight: 400;">Or use your email</span>
+
+                    </div>
+                    <div class="f8o">
+                        <div class="f8p">
+                            <form method="POST" asp-action="SaveSignup" asp-controller="auth">
+                                <input type="email" class="f93">
+                                <input type="password" class="f93">
+                                <div class="f8o">
+                                    <select class="jl jm jp" required  style="width: 100%;" name="usertype">
+                                        <option value="">Select Accout Type</option>
+                                        @{foreach (var item in Model)
+                                            {
+                                                <option value="@item.Value">@item.Text</option>
+                                            } }
+                                    </select>
+                                    <div class="f8r">
+                                        <span class="i7 i8 ig" style="font-weight: 400;"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="f8o">
-                                <input class="jl jm jp" id="" type="text" placeholder="Name" autocomplete="name" name="name" value="" style="width: 100%;">
-                                <div class="f8r">
-                                    <span class="i7 i8 ig" style="font-weight: 400;"></span>
+                                <div class="f8o">
+                                    <input class="jl jm jp" id="" required type="text" placeholder="Name" autocomplete="name" name="name" value="" style="width: 100%;">
+                                    <div class="f8r">
+                                        <span class="i7 i8 ig" style="font-weight: 400;"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="f8o">
-                                <input class="jl jm jp" id="" type="email" placeholder="Email address" autocomplete="email" name="email" value="" style="width: 100%;">
-                                <div class="f8r">
-                                    <span class="i7 i8 ig" style="font-weight: 400;"></span>
+                                <div class="f8o">
+                                    <div>
+                                        <input class="jl jm jp" id="signupEmail" type="email" placeholder="Email address" autocomplete="email" name="email" value="" style="width: 100%;">
+                                        <i class="fas fa-spinner fa-spin input-inner-icon input-loading"></i>
+                                        <i title="Email is avaiable"  class="fas fa-check text-success input-inner-icon lp-d-none"></i>
+                                        <i title="Email already registered" class="fas fa-times text-danger  input-inner-icon lp-d-none"></i>
+                                    </div>
+                                    <div class="f8r">
+                                        <span class="i7 i8 ig" style="font-weight: 400;"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="f8o">
-                                <input class="jl jm jp" id="" type="password" placeholder="Password" autocomplete="new-password" name="password" value="" style="width: 100%;">
-                                <div class="f8r">
-                                    <span class="i7 i8 ig" style="font-weight: 400;"></span>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;">
-                                        <div class="grecaptcha-logo">
-                                            <iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcZKzIUAAAAADbms68x_AZlGFahPVSx3T8idFvk&amp;co=aHR0cHM6Ly9hcHAuYmFubmVyc25hY2suY29tOjQ0Mw..&amp;hl=en&amp;type=image&amp;v=HYx6hBAtwYatsD8qzq7tXNTk&amp;theme=light&amp;size=invisible&amp;badge=bottomright&amp;cb=i5k3qpl7rob1" width="256" height="60" role="presentation" name="a-ag7wqfuq8g4v" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+                                <div class="f8o">
+                                    <div class="input-group mb-3">
+                                        <input type="password" name="password" id="password" autocomplete="on" tabindex="2" value="" aria-label="" aria-describedby="basic-addon1" class="form-control jl jm jp" placeholder="Confirm Password" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary lp-viewpassword" type="button"><i class="fas fa-eye"></i></button>
                                         </div>
-                                        <div class="grecaptcha-error"></div>
-                                        <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
-                                    </div><iframe style="display: none;"></iframe>
+                                    </div>
+                                    <div class="f8r">
+                                        <span class="i7 i8 ig" style="font-weight: 400;"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="f8o f8q">
-                                <div class="f8t">
-                                    <span class="i7 i8 ig" style="font-weight: 400;"></span>
+                                <div>
+                                    <div>
+                                        <div class="grecaptcha-badge" data-style="bottomright" style="width: 256px; height: 60px; display: block; transition: right 0.3s ease 0s; position: fixed; bottom: 14px; right: -186px; box-shadow: gray 0px 0px 5px; border-radius: 2px; overflow: hidden;">
+                                            <div class="grecaptcha-logo">
+                                                <iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcZKzIUAAAAADbms68x_AZlGFahPVSx3T8idFvk&amp;co=aHR0cHM6Ly9hcHAuYmFubmVyc25hY2suY29tOjQ0Mw..&amp;hl=en&amp;type=image&amp;v=HYx6hBAtwYatsD8qzq7tXNTk&amp;theme=light&amp;size=invisible&amp;badge=bottomright&amp;cb=i5k3qpl7rob1" width="256" height="60" role="presentation" name="a-ag7wqfuq8g4v" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+                                            </div>
+                                            <div class="grecaptcha-error"></div>
+                                            <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+                                        </div><iframe style="display: none;"></iframe>
+                                    </div>
                                 </div>
-                                <button class="fd9 fdb fda" type="submit" style="height: 46px; width: 100%;">
-                                    <span class="i7 ia if" style="font-weight: 400;">Sign up free</span>
-                                </button>
+                                <div class="f8o f8q">
+                                    <div class="f8t">
+                                        <span class="i7 i8 ig" style="font-weight: 400;"></span>
+                                    </div>
+                                    <button class="fd9 fdb fda" type="submit" style="height: 46px; width: 100%;">
+                                        <span class="i7 ia if" style="font-weight: 400;">Sign up free</span>
+                                    </button>
+                                </div>
+                            </form>
+                            <div class="f8o f8u">
+                                <span class="i7 i8 id" style="font-weight: 400;">By signing up you agree to our <a class="a0s a0u a16" href="//www.bannersnack.com/legal-information/terms-of-service/" target="_blank" rel="noopener noreferrer" tabindex="-1">Terms of Service</a> and <a class="a0s a0u a16" href="//www.bannersnack.com/legal-information/privacy-policy/" target="_blank" rel="noopener noreferrer" tabindex="-1">Privacy Policy</a>, including the way we collect and process your personal data.</span>
                             </div>
-                        </form>
-                        <div class="f8o f8u">
-                            <span class="i7 i8 id" style="font-weight: 400;">By signing up you agree to our <a class="a0s a0u a16" href="//www.bannersnack.com/legal-information/terms-of-service/" target="_blank" rel="noopener noreferrer" tabindex="-1">Terms of Service</a> and <a class="a0s a0u a16" href="//www.bannersnack.com/legal-information/privacy-policy/" target="_blank" rel="noopener noreferrer" tabindex="-1">Privacy Policy</a>, including the way we collect and process your personal data.</span>
                         </div>
+                    </div><div class="f8o f91">
+                        <span class="i7 i9 ie" style="font-weight: 400;">Already have an account? </span><a class="f92" href="/auth/login">Log in now</a>
                     </div>
-                </div><div class="f8o f91">
-                    <span class="i7 i9 ie" style="font-weight: 400;">Already have an account? </span><a class="f92" href="">Log in now</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 

@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using LetsPaint.UtilityManager;
 
 namespace LetsPaint
 {
@@ -22,9 +23,11 @@ namespace LetsPaint
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            StaticConfig = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public  IConfiguration Configuration { get; }
+        public static IConfiguration StaticConfig { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,6 +37,7 @@ namespace LetsPaint
         .GetSection("EmailConfiguration")
         .Get<EmailConfiguration>();
             services.AddSingleton(emailConfig);
+            services.AddSingleton(Configuration);
             services.AddScoped<IEmailSender, EmailSender>();
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -45,12 +49,19 @@ namespace LetsPaint
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
-  services.AddSession();
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.Name = ".LetsPaint.Session";
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddMvcOptions(options =>
             {
                 //options.Filters.Add(new LetsPaintAuth());
             });
-            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
             services.AddAuthentication().AddGoogle(option=> {
                 option.ClientId = "657260078627-nbdgeg3r14mhc3s1m770qalb7pqo2i3m.apps.googleusercontent.com";
                 option.ClientSecret = "W8mZEhJDg1_UYj3RLejObsVs";
@@ -61,6 +72,7 @@ namespace LetsPaint
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSession();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

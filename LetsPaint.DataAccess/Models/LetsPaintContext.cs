@@ -208,6 +208,8 @@ namespace LetsPaint.DataAccess.Models
                     .IsRequired()
                     .HasMaxLength(50);
 
+                entity.Property(e => e.EmailOtp).HasColumnName("EmailOTP");
+
                 entity.Property(e => e.FirstName).HasMaxLength(50);
 
                 entity.Property(e => e.Gender).HasMaxLength(10);
@@ -217,6 +219,8 @@ namespace LetsPaint.DataAccess.Models
                 entity.Property(e => e.LastName).HasMaxLength(50);
 
                 entity.Property(e => e.Mobile).HasMaxLength(13);
+
+                entity.Property(e => e.MobileOtp).HasColumnName("MobileOTP");
 
                 entity.Property(e => e.ModifiedDate).HasColumnType("datetime");
 

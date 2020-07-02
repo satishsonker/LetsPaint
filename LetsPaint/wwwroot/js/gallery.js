@@ -29,13 +29,14 @@ function bindGallery($galId) {
     $($container).find('.row:gt(0)').remove();
     var $list = ``;
     apiGet(url.root.gallery.getGallery + `?galleryTypeId=${$galId}`).then(function (data) {
-        $(data.data.records).each(function (ind, ele) {
-            if (ind === 0) {
-                $list += '<div class="row">';
-            } if (ind % $galData[0].gridSize === 0 && ind !== 0) {
-                $list += '</div><div class="row">';
-            }
-            $list += `<div class="col-md-3 p-col">               
+        if (data.data.records.length > 0) {
+            $(data.data.records).each(function (ind, ele) {
+                if (ind === 0) {
+                    $list += '<div class="row">';
+                } if (ind % $galData[0].gridSize === 0 && ind !== 0) {
+                    $list += '</div><div class="row">';
+                }
+                $list += `<div class="col-md-3 p-col">               
                     <div class="gallery-container">
                     <div class="new-badge">${ele.badge === null || ele.badge === 'null' ? '' : ele.badge}</div>
                        <a href="/home/theartist"><div class="overlay-artist">Artist - ${ele.artist}</div> </a>
@@ -44,7 +45,6 @@ function bindGallery($galId) {
                         <div class="overlay">${ele.title} 
                             <div class="img-ctrl">
                                 <i class="fas fa-heart"><span>0</span></i>
-                                <i class="fas fa-thumbs-up"><span>0</span></i>
                                 <i class="fas fa-comment-alt"><span>0</span></i>
                                 <i class="fas fa-comment"></i>
                             </div>
@@ -54,8 +54,16 @@ function bindGallery($galId) {
               
             </div>`;
 
-        });
-        $($container).append($list + '</div>');
+            });
+            $($container).append($list + '</div>');
+        }
+        else {
+            $($container).append(` <div class="nodata row">
+            <h4>Artist is painting their Creativity</h4>
+<h6>They will come soon here</h6>
+            <img  src="/images/workingArtist.gif" />
+        </div>`);
+        }
     });
 }
 

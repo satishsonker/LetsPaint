@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html>
-
+@using LetsPaint.ModelAccess.Common;
+@using LetsPaint.ModelAccess.Auth;
+@model ApiResponseModel
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -7,11 +9,12 @@
     <link href="~/css/weblayout.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <script src="~/js/apiUrls.js"></script>
     <script src="~/js/api.js"></script>
+    <script src="~/js/webLayout.js"></script>
 </head>
 <body>
 
@@ -20,17 +23,16 @@
             <a href="/home/index">  <img src="~/images/logo_md_trans.png" alt="Lets Paint" /></a>
         </div>
         <div class="right-menu">
-            <div class="socialShare">
-                <ul>
-                    <li class="mobile" title="Call"><a href="tel:+91-8920521784"><img src="~/images/call.png" /></a></li>
-                    <li title="WhatsApp"><a href="https://api.whatsapp.com/send?phone=918920521784&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><img src="~/images/whatsapp.png" /></a></li>
-                    @*<li title="Youtube"><a href=""><img src="~/images/youtube.png" /></a></li>*@
-                    <li title="Facebook"><a href="https://www.facebook.com/Lets-Paint-112932870431111" target="_blank"><img src="~/images/facebook.png" /></a></li>
-                    <li title="Instagram"><a href="https://www.instagram.com/letspaintcreative/" target="_blank"><img src="~/images/instagram.png" /></a></li>
-                </ul>
-                @*<a href="tel:+91-8920521784" class="btn-call">+91-8920521784</a>*@
-            </div>
-            <ul class="d-none d-md-block">
+            @*<div class="socialShare">
+                    <ul>
+                        <li class="mobile" title="Call"><a href="tel:+91-8920521784"><img src="~/images/call.png" /></a></li>
+                        <li title="WhatsApp"><a href="https://api.whatsapp.com/send?phone=918920521784&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><img src="~/images/whatsapp.png" /></a></li>
+                        <li title="Facebook"><a href="https://www.facebook.com/Lets-Paint-112932870431111" target="_blank"><img src="~/images/facebook.png" /></a></li>
+                        <li title="Instagram"><a href="https://www.instagram.com/letspaintcreative/" target="_blank"><img src="~/images/instagram.png" /></a></li>
+                    </ul>
+                </div>*@
+
+            <ul class="d-none d-md-block main-menu">
                 <li><a href="/home/index"><i class="fas fa-home"></i> Home</a></li>
                 <li>
                     <a href="/home/theartist"><i class="fas fa-palette"></i> The Artist</a>
@@ -43,10 +45,40 @@
                 <li><a href="/home/index#contactUs"><i class="fas fa-address-book"></i> Contact Us</a></li>
                 <li><a href="/home/aboutUs"><i class="fas fa-info-circle"></i> About Us</a></li>
             </ul>
+            <div class="loginuser d-none d-md-block">
+                <i class="fas fa-user-circle"></i><i class="fas fa-sort-down"></i>
+                                                  <ul class="profile-menu">
+                                                      @{
+                                                          if (Model != null && Model.Data!=null)
+                                                          {
+                                                              var data = @Model.Data as LoginOutputModel;
+                                                              <li>@data.FirstName  @data.LastName</li>
+                                                              <li><a href="/auth/logout">Logout</a></li>
+                                                              <li>Profile</li>
+                                                              <li data-toggle="modal" data-target="#ChangePasswordModel">Change Password</li>
+                                                          }
+                                                          else
+                                                          {
+                                                              <li>Welcome User</li>
+                                                              <li><a href="/auth/login">Login</a> </li>
+                                                              <li><a href="/auth/signup">Signup</a> </li>
+                                                          }
+                                                      }
+                                                  </ul>
+            </div>
             <i class="fas fa-bars d-md-none d-lg-none d-xl-none humbarger"></i>
         </div>
     </div>
     <ul class="mobile-menu mobile-menu-hidden">
+        <li>
+            <a href="#">
+                <i class="fas fa-user-circle"></i> @if (Model != null && Model.Data != null)
+                {
+                    var data = @Model.Data as LoginOutputModel;
+                    <text>@data.FirstName  @data.LastName</text>
+                }
+            </a>
+        </li>
         <li><a href="/home/index"><i class="fas fa-home"></i> Home</a></li>
         <li>
             <a href="/home/theartist"><i class="fas fa-palette"></i> The Artist</a>
@@ -69,6 +101,7 @@
                     <li>Craft Items</li>
                     <li>Paintings</li>
                     <li>Rangoli</li>
+                    <li>Name Plate</li>
                 </ul>
             </div>
             <div class="col-md-3  col-sm-6 content-sec">
@@ -97,7 +130,7 @@
                 <ul>
                     <li><i class="fas fa-home"></i> 14th Avenue, Gaur City 2, Greater Noida West, UP, India</li>
                     <li><i class="fas fa-mobile-alt"></i> Phone : <a href="tel:+91-8799798300">8920521784</a></li>
-                    <li><i class="fas fa-envelope"></i> Email : <a href="mailto:support@letspaintcreative.com">support@letspaintcreative.com</a></li>
+                    <li><i class="fas fa-envelope"></i> Email : <a style="word-break: break-all;" href="mailto:support@letspaintcreative.com">support@letspaintcreative.com</a></li>
                     <li class="socialsite">
                         <a href="tel:+91-9891674974" class="mobile" style="float: left;width: 20px;margin-right: 4px;"><i class="fas fa-phone-square-alt"></i></a>
                         <a href="https://api.whatsapp.com/send?phone=918920521784&fbclid=IwAR234xKxG9fN5wnloC0-2rE1Fxe5zk1K8bwU3Fov1gyPe2u0N7zw4Lb2fHU" target="_blank"><i class="fab fa-whatsapp-square"></i></a>
@@ -117,90 +150,36 @@
     <div class="lp-loader">
         <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
     </div>
-    <script>
-        //$(document).ready(function () {
-        //    $('.humbarger').on('click', function () {
-        //        $('.mobile-menu').toggleClass('hidden-menu');
-        //    });
+    <div class="modal fade" id="ChangePasswordModel" tabindex="-1" role="dialog" aria-labelledby="ChangePasswordModelLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="ChangePasswordModelLabel">Change Password</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmChangePassword" asp-action="changepassword" asp-controller="auth" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="email">Old Password</label>
+                            <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Enter old password">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">New Password</label>
+                            <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Enter confirm password">
+                        </div>
+                        <div style="margin-top:20px;"><button type="submit" class="btn btn-primary btn-sm" style="float:right">Change</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        //});
-        //$(window).resize(function () {
-        //    if ($(document).width() > 819) {
-        //        $('.mobile-menu').addClass('hidden-menu');
-        //    }
-        //});
-        window.onscroll = function () { scrollFunction() };
-
-        function scrollFunction() {
-            if (window.innerWidth > 768) {
-                if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-                    $("#navbar").css({ 'padding': '10px 15px', 'background': '#ffffff' });
-                    $('.menu .left-menu img').css({ 'padding': '5px 10px' });
-                } else {
-                    $("#navbar").css({ 'padding': '25px 15px', 'background': '#ffffffc7' });
-                    $('.menu .left-menu img').css({ 'padding': '0px' });
-                }
-            }
-            else {
-                if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-                    $("#navbar").css({ 'background': '#ffffff' });
-                } else {
-                    $("#navbar").css({ 'background': '#ffffffc7' });
-                }
-
-            }
-        }
-        $(document).mouseup(function (e) {
-            if ($('.mobile-menu').is(':visible')) {
-                $('.mobile-menu').addClass('mobile-menu-hidden');
-                $('.humbarger').addClass('fa-bars').removeClass('fa-times');
-            }
-        });
-        $(document).on('click', '.humbarger', function () {
-            if ($('.mobile-menu').is(':visible')) {
-                $(this).addClass('fa-bars').removeClass('fa-times');
-                $('.mobile-menu').addClass('mobile-menu-hidden');
-            } else {
-                 $(this).removeClass('fa-bars').addClass('fa-times'); $('.mobile-menu').removeClass('mobile-menu-hidden');
-            }
-            
-        });
-
-        $('a[href*="#"]')
-            // Remove links that don't actually link to anything
-            .not('[href="#"]')
-            .not('[href="#0"]')
-            .click(function (event) {
-                // On-page links
-                if (
-                    location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
-                    &&
-                    location.hostname == this.hostname
-                ) {
-                    // Figure out element to scroll to
-                    var target = $(this.hash);
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    // Does a scroll target exist?
-                    if (target.length) {
-                        // Only prevent default if animation is actually gonna happen
-                        event.preventDefault();
-                        $('html, body').animate({
-                            scrollTop: target.offset().top
-                        }, 1000, function () {
-                            // Callback after animation
-                            // Must change focus!
-                            var $target = $(target);
-                            $target.focus();
-                            if ($target.is(":focus")) { // Checking if the target was focused
-                                return false;
-                            } else {
-                                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-                                $target.focus(); // Set focus again
-                            };
-                        });
-                    }
-                }
-            });
-    </script>
 </body>
 </html>

@@ -52,9 +52,9 @@ namespace LetsPaint.ModelAccess.Models
 
         public void SendEmail(Message message)
         {
-            //var emailMessage = CreateEmailMessage(message);
+            var emailMessage = CreateEmailMessage(message);
 
-            //Send(emailMessage);
+            Send(emailMessage);
         }
 
         private MimeMessage CreateEmailMessage(Message message)

@@ -1,0 +1,75 @@
+﻿.lp-title {
+    text-align: center;
+    font-size: 24px;
+    color:grey;
+    margin-bottom:25px !important
+}
+a{
+    text-decoration:none !important;
+}
+
+.lp-sub-title {
+    text-align: left;
+    font-size: 11px;
+    color: grey;
+    margin-bottom: 25px !important;
+}
+
+.lp-screen {
+    width: 50%;
+    margin: auto;
+}
+.lp-error {
+    text-align: center;
+    color: red;
+    font-size: 13px;
+    margin-bottom: 5px !important
+}
+.lp-success {
+    text-align: center;
+    color: forestgreen;
+    font-size: 13px;
+    margin-bottom: 5px !important
+}
+.lp-btn{
+    width:100%;
+    margin-bottom:20px;
+}
+
+.lp-dc{
+    font-size:10px;
+    color:gray;
+    text-align:center;
+}
+
+@media only screen and (max-width: 850px) {
+    .lp-screen {
+        width: 100% !important;
+        margin: auto;
+    }
+    .l-header {
+        width: 100% !important;
+        margin-top: 20% !important;
+    }
+}
+
+.l-header {
+    width: 100%;
+    margin-top: 10%;
+    margin-bottom: 100px;
+}
+
+    .l-header form input {
+        margin-bottom: 20px;
+    }
+
+.lp-logo {
+    text-align: center;
+}
+
+    .lp-logo a {
+    }
+
+        .lp-logo a img {
+            width: 120px;
+        }
