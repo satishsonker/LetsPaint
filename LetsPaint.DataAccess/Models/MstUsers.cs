@@ -36,6 +36,7 @@ namespace LetsPaint.DataAccess.Models
         public DateTime? ModifiedDate { get; set; }
         public int? EmailOtp { get; set; }
         public int? MobileOtp { get; set; }
+        public bool IsAdmin { get; set; }
 
         public virtual MstUserType UserType { get; set; }
         public virtual ICollection<MstGallery> MstGalleryArtist { get; set; }

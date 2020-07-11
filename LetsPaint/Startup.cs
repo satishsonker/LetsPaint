@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using LetsPaint.UtilityManager;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 
 namespace LetsPaint
 {
@@ -47,7 +48,16 @@ namespace LetsPaint
             });
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                string MyAllowSpecificOrigins = "MyOrigin";
+                c.AddPolicy(name: MyAllowSpecificOrigins,
+                              builder =>
+                              {
+                                  builder.WithOrigins("http://letspaintCreative.com",
+                                                      "http://localhost", "http://letspaint.somee.com");
+                                  builder.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+                              });
             });
             services.AddDistributedMemoryCache();
 
@@ -61,6 +71,10 @@ namespace LetsPaint
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddMvcOptions(options =>
             {
                 //options.Filters.Add(new LetsPaintAuth());
+            });
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("MyOrigin"));
             });
             services.AddAuthentication().AddGoogle(option=> {
                 option.ClientId = "657260078627-nbdgeg3r14mhc3s1m770qalb7pqo2i3m.apps.googleusercontent.com";
@@ -85,6 +99,7 @@ namespace LetsPaint
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
+            app.UseCors("MyOrigin");
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: "areas",template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

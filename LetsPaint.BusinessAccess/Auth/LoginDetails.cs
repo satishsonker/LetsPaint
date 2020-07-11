@@ -28,8 +28,13 @@ namespace LetsPaint.BusinessAccess.Auth
                     if(_user.Password.Equals(loginViewModel.Password))
                     {
                         if (!_user.IsBlocked)
-                        {
-                            apiResponseModel.Data = new LoginOutputModel {IsBlocked=_user.IsBlocked, FirstName = _user.FirstName, LastName = _user.FirstName, Email = _user.Email,Mobile=_user.Mobile,IsEmailVarified=_user.IsEmailVarified,IsMobileVarified=_user.IsMobileVerified,UserId=_user.UserId};
+                        {var _data= new LoginOutputModel {IsAdmin=_user.IsAdmin, IsBlocked = _user.IsBlocked, FirstName = _user.FirstName, LastName = _user.FirstName, Email = _user.Email, Mobile = _user.Mobile, IsEmailVarified = _user.IsEmailVarified, IsMobileVarified = _user.IsMobileVerified, UserId = _user.UserId};
+                            var _userDetails = _db.MstUserDetails.Where(x => x.UserId == _user.UserId && x.IsActive).FirstOrDefault();
+                            if(_userDetails!=null)
+                            {
+                                _data.Photo = _userDetails.Photo;
+                            }
+                            apiResponseModel.Data = _data;
                             apiResponseModel.Message = "true";
                         }
                         else

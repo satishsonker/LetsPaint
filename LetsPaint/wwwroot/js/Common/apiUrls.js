@@ -1,10 +1,7 @@
-﻿var baseUrl = "";
-if (location.host.indexOf('localhost') > -1) {
-    baseUrl = "http://localhost:59928";
-} else {
-    baseUrl = "http://letspaint.somee.com";
-}
-const url = {
+﻿
+
+const apiURLs = {
+    baseUrl:'',
     root: {
         home: {},
         auth: {
@@ -18,7 +15,19 @@ const url = {
             getgalleryType: '/gallery/getgalleryType',
             getGallery: '/gallery/getgallery',
         }
+    },
+    admin: {
+        userManagement: {
+            getUserList: '/admin/usermanagement/getuserlist',
+            blockUser: '/admin/usermanagement/BlockUser',
+            deleteUser: '/admin/usermanagement/DeleteUser'
+        }
     }
+}
+if (location.host.indexOf('localhost') > -1) {
+    apiURLs.baseUrl = "http://localhost:59928";
+} else {
+    apiURLs.baseUrl = "http://letspaint.somee.com";
 }
 
 $(document).ajaxStart(function () {

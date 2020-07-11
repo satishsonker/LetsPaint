@@ -1,1 +1,2 @@
 ﻿Scaffold-DbContext "Server=satishsonkar;Database=letspaint;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force
+Scaffold-DbContext "Server=LetsPaint.mssql.somee.com;packet size=4096;user id=mypoo2017_SQLLogin_1;pwd=ve2o2mtk7t;data source=LetsPaint.mssql.somee.com;persist security info=False;initial catalog=LetsPaint" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force

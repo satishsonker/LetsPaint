@@ -27,7 +27,7 @@ namespace LetsPaint.DataAccess.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=satishsonkar;Database=letspaint;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=LetsPaint.mssql.somee.com;packet size=4096;user id=mypoo2017_SQLLogin_1;pwd=ve2o2mtk7t;data source=LetsPaint.mssql.somee.com;persist security info=False;initial catalog=LetsPaint");
             }
         }
 

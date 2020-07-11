@@ -10,11 +10,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <script src="~/js/apiUrls.js"></script>
-    <script src="~/js/api.js"></script>
-    <script src="~/js/webLayout.js"></script>
+    <script src="~/js/Common/common.js"></script>
+    <script src="~/js/Common/Constants.js"></script>
+    <script src="~/js/Common/Global.js"></script>
+    <script src="~/js/Common/apiUrls.js"></script>
+    <script src="~/js/Layout/webLayout.js"></script>
 </head>
 <body>
 
@@ -46,38 +49,79 @@
                 <li><a href="/home/aboutUs"><i class="fas fa-info-circle"></i> About Us</a></li>
             </ul>
             <div class="loginuser d-none d-md-block">
-                <i class="fas fa-user-circle"></i><i class="fas fa-sort-down"></i>
-                                                  <ul class="profile-menu">
-                                                      @{
-                                                          if (Model != null && Model.Data!=null)
-                                                          {
-                                                              var data = @Model.Data as LoginOutputModel;
-                                                              <li>@data.FirstName  @data.LastName</li>
-                                                              <li><a href="/auth/logout">Logout</a></li>
-                                                              <li>Profile</li>
-                                                              <li data-toggle="modal" data-target="#ChangePasswordModel">Change Password</li>
-                                                          }
-                                                          else
-                                                          {
-                                                              <li>Welcome User</li>
-                                                              <li><a href="/auth/login">Login</a> </li>
-                                                              <li><a href="/auth/signup">Signup</a> </li>
-                                                          }
-                                                      }
-                                                  </ul>
+                @{
+                    LoginOutputModel data = null;
+                    if (Model != null && Model.Data != null)
+                    {
+                        data = @Model.Data as LoginOutputModel;
+                    }
+                    if (data == null)
+                    { <i class="fas fa-user-circle"></i>}
+                    else
+                    {
+                        <img src="@data.Photo" class="fa-user-circle" style="width: 40px;height: 40px; border-radius: 48px;" />
+                    }
+
+                    <i class="fas fa-sort-down"></i>
+                    <ul class="profile-menu">
+                        @if (data != null)
+                        {
+
+                            <li>@data.FirstName</li>
+                            if (data.IsAdmin)
+                            {
+                                <li><a href="/admin/home/dashboard">Admin</a></li>
+}
+                            <li><a href="/auth/logout">Logout</a></li>
+                            <li>Profile</li>
+                            <li data-toggle="modal" data-target="#ChangePasswordModel">Change Password</li>
+                        }
+                        else
+                        {
+                            <li>Welcome User</li>
+                            <li><a href="/auth/login">Login</a> </li>
+                            <li><a href="/auth/signup">Signup</a> </li>
+                        }
+                    </ul>
+                }
             </div>
             <i class="fas fa-bars d-md-none d-lg-none d-xl-none humbarger"></i>
         </div>
     </div>
     <ul class="mobile-menu mobile-menu-hidden">
         <li>
-            <a href="#">
-                <i class="fas fa-user-circle"></i> @if (Model != null && Model.Data != null)
+
+            @{
+                if (Model != null && Model.Data != null)
                 {
-                    var data = @Model.Data as LoginOutputModel;
-                    <text>@data.FirstName  @data.LastName</text>
+                    <div class="user-logo">
+                        <img src="@data.Photo" style="width: 40px;height: 40px; border-radius: 48px;" />
+                        <text>@data.FirstName</text> <i class="fas fa-sort-down"></i>
+                    </div>
                 }
-            </a>
+                else
+                {
+                    <i class="fas fa-user-circle user-logo"> Welcome guest <i class="fas fa-sort-down"></i></i>
+                }
+            }
+
+            <ul class="mobile-submenu">
+                @if (data != null)
+                {
+                    if (data.IsAdmin)
+                    {
+                        <li><a href="/admin/home/dashboard">Admin</a></li>
+                    }
+                    <li><a href="/auth/logout">Logout</a></li>
+                    <li>Profile</li>
+                    <li data-toggle="modal" data-target="#ChangePasswordModel">Change Password</li>
+                }
+                else
+                {
+                    <li><a href="/auth/login">Login</a> </li>
+                    <li><a href="/auth/signup">Signup</a> </li>
+                }
+            </ul>
         </li>
         <li><a href="/home/index"><i class="fas fa-home"></i> Home</a></li>
         <li>
@@ -173,7 +217,8 @@
                             <label for="email">Confirm Password</label>
                             <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Enter confirm password">
                         </div>
-                        <div style="margin-top:20px;"><button type="submit" class="btn btn-primary btn-sm" style="float:right">Change</button>
+                        <div style="margin-top:20px;">
+                            <button type="submit" class="btn btn-primary btn-sm" style="float:right">Change</button>
                         </div>
                     </form>
                 </div>

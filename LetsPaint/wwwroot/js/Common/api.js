@@ -5,7 +5,7 @@ const apiGet = function (url, success) {
     return new Promise(function (resolve, reject) {
         $.ajax({
             type: 'GET',
-            url: baseUrl + url,
+            url: apiURLs.baseUrl + url,
             contentType: 'application/json',
             dataType: 'json',
             success: function (data, responseText, jqXHR) {
@@ -23,7 +23,7 @@ const apiPost = function (url, params, options) {
  
     return new Promise(function (resolve, reject) {
         let option = {};
-        option.url = baseUrl + url;
+        option.url = apiURLs.baseUrl + url;
         option.type= "POST";
         option.timeout = 300000; 
         option.contentType= "application/json";

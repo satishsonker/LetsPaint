@@ -1,22 +1,4 @@
 ﻿/// <reference path="api.js" />
-$(document).on('change', '#signupEmail', function () {
-    $('.input-loading').show();
-    $('.fa-times').hide();
-    $('.fa-check').hide();
-    apiPost(url.root.auth.isEmailexist + '?email=' + $(this).val()).catch(apiError).then(function (data) {
-        $('.input-loading').hide();
-        if (data) {
-            $('.fa-times').show();
-            $('.fa-check').hide();
-        }
-        else {
-            $('.fa-times').hide();
-            $('.fa-check').show();
-        }
-
-    });
-
-});
 
 $(document).on('submit', '#frmChangePassword', function (e) {
     //e.stopPropagation();

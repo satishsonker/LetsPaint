@@ -1,8 +1,9 @@
-﻿$(document).ready(function () {
+﻿/// <reference path="common/apiurls.js" />
+$(document).ready(function () {
     var $galleriesContainer = $('.galleries ul'), $galleriesList = '', $query = getUrlVars(), $galId = parseInt($query.galId);
     $($galleriesContainer).empty();
 
-    apiGet(url.root.gallery.getgalleryType).then(function (data) {
+    api.get(url.root.gallery.getgalleryType).then(function (data) {
         galleries = data.data;
         $(galleries).each(function (ind, ele) {
             $galleriesList += `<li data-id="${ele.galleryTypeId}" data-gridsize="${ele.gridSize}" class="${ele.galleryTypeId === $galId ? 'active' : ''}" data-baseurl="${ele.baseUrl}">${ele.galleryType}</li>`;

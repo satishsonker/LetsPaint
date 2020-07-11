@@ -100,3 +100,11 @@ $('a[href*="#"]')
 $(document).on('click', '.profile-menu li:gt(0)', function () {
     $('.profile-menu ').hide();
 });
+
+$(document).on('click', '.mobile-menu .user-logo', function () {
+    if ($('.mobile-menu .mobile-submenu').is(':visible'))
+        $('.mobile-menu .mobile-submenu').hide(1000);
+    else {
+        $('.mobile-menu .mobile-submenu').show(1000);
+    }
+});

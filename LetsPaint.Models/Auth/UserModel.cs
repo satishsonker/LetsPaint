@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,11 +21,12 @@ namespace LetsPaint.ModelAccess.Auth
 
     public class UserProfileModel: UserModel
     {
+        public bool IsImageRemoved { get; set; }
         public int UserDetailsId { get; set; }
         public string FacebookProfile { get; set; }
         public string InstagramProfile { get; set; }
         public string Website { get; set; }
-        public string Photo { get; set; }
+        public IFormFile Photo { get; set; }
         public string Gender { get; set; }
     }
 

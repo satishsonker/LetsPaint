@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using LetsPaint.ModelAccess.Common;
 using LetsPaint.Filters;
 using LetsPaint.ModelAccess.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace LetsPaint.Controllers
 {
@@ -22,9 +23,11 @@ namespace LetsPaint.Controllers
     public class AuthController : Controller
     {
         private readonly IEmailSender _emailSender;
-        public AuthController(IEmailSender emailSender)
+        private readonly IHostingEnvironment _env;
+        public AuthController(IEmailSender emailSender, IHostingEnvironment env)
         {
             _emailSender = emailSender;
+            _env = env;
         }
         [HttpPost]
         public IActionResult Login([FromForm] LoginViewModel loginViewModel)
@@ -203,10 +206,10 @@ namespace LetsPaint.Controllers
         public IActionResult SaveProfile([FromForm] UserProfileModel userProfileModel)
         {
             SignupDetails signupDetails = new SignupDetails();
-            if (signupDetails.SaveProfile(userProfileModel))
+            if (signupDetails.SaveProfile(userProfileModel,_env))
             {
-                DropdownData dropdownData = new DropdownData();
-                return View("~/views/home/index.cshtml");
+               
+                return RedirectToAction("index","Home");
             }
             else
             {

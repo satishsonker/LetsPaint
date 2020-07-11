@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_blankLayout.cshtml";
 }
 <link href="~/css/Auth/CompleteProfile.css" rel="stylesheet" />
-
+<script src="~/js/Auth/CompleteProfile.js"></script>
 <div class="container mar-top-134 CompleteProfile-container">
     @if (Model != null)
     {
@@ -18,10 +18,12 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="profile-img-container">
-                    <img src="~/images/Artist/poonam.jpg" />
+                    <img id="imgProfile" src="~/images/Artist/poonam.jpg" />
+                    <input type="hidden" value="false" id="isImageRemoved" name="isImageRemoved" />
                     <div class="crtl">
-                        <i class="fas fa-camera" title="Change Picture"></i>
-                        <i class="fas fa-times" title="Remove Picture"></i>
+                        <i class="fas fa-camera" id="addPix" title="Change Picture"></i>
+                        <i class="fas fa-times" id="rmvPix" title="Remove Picture"></i>
+                        <input for="photo" type="file" name="photo" style="opacity:0;" id="photo" accept="jpg|jpeg|png" />
                     </div>
                 </div>
             </div>
@@ -43,7 +45,7 @@
                 </div>
                     }
                 <div class="form-group">
-                    <label for="lastname">Gender</label>
+                    <label for="Gender">Gender</label>
                     <select class="form-control" id="gender" name="gender" required>
                         <option value="">Select Gender</option>
                         <option value="Male">Male</option>
@@ -53,19 +55,14 @@
                 <div class="form-group">
                     <input type="hidden" name="userid" value="@Model.UserId" />
                     <label for="email">Email</label>
-                    <div class="form-inline">
-                        <input type="email" class="form-control" readonly id="email" style="width: 96%;margin-right: 10px;" name="email" value="@Model.Email.Trim()" required placeholder="Email Address *" />
-                        <i class="fas fa-exclamation-triangle i-unverify"></i>
-                        <i class="fas fa-check-circle i-verify"></i>
+                    <div>
+                        <input class="form-control" readonly id="email" type="email" value="@Model.Email.Trim()" required placeholder="Email Address *" autocomplete="email" name="email" style="width: 100%;">
+                       <i title="Email is not verified" style="position: absolute;margin-top: -30px;right: 28px;" class="fas fa-exclamation-triangle text-warning input-inner-icon"></i>
                     </div>
-                </div>
-                <div class="form-inline">
-                    <input type="number" class="form-control form-control-sm" id="emailotp" name="email" value="" placeholder="Email OTP" />
-                    <button class="btn btn-secondary btn-sm">Verify</button> <button class="btn btn-secondary btn-sm">Resend OTP</button>
                 </div>
                 <div class="form-group">
                     <label for="mobile">Mobile</label>
-                    <input type="email" class="form-control" name="mobile" id="mobile" value="" placeholder="Mobile (optional)" />
+                    <input type="email" class="form-control" data-type="mobile" name="mobile" id="mobile" value="" placeholder="Mobile (optional)" />
                 </div>
                 <div class="sub-heading">
                     Social Details

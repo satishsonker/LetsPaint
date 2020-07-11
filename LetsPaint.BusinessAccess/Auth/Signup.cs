@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using LetsPaint.UtilityManager;
 using LetsPaint.ModelAccess.Models;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace LetsPaint.BusinessAccess.Auth
 {
@@ -50,8 +51,36 @@ namespace LetsPaint.BusinessAccess.Auth
         }
 
 
-        public bool SaveProfile(UserProfileModel userProfileModel)
+        public bool SaveProfile(UserProfileModel userProfileModel, IHostingEnvironment hostingEnvironment)
         {
+            string dir = "\\Images\\Users\\";
+            string path = dir + "User_" + userProfileModel.UserId + ".jpg";
+            var _webRootPath = string.Empty;
+            if(hostingEnvironment!=null)
+            {
+                _webRootPath = hostingEnvironment.WebRootPath;
+                if (userProfileModel.IsImageRemoved)
+                {
+                    File.Delete(path);
+                }
+                if (userProfileModel!=null && userProfileModel.Photo!=null)
+                {
+                    path = dir + "User_" + userProfileModel.UserId + userProfileModel.Photo.FileName.Substring(userProfileModel.Photo.FileName.LastIndexOf("."));
+
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
+                   if(File.Exists(path))
+                    {
+                        File.Delete(path);
+                    }
+                    using (var stream = new FileStream(_webRootPath+ path, FileMode.Create))
+                    {
+                        userProfileModel.Photo.CopyTo(stream);
+                    }
+                }
+            }
             var _user = _db.MstUsers.Where(x => x.UserId == userProfileModel.UserId && x.IsActive).FirstOrDefault();
             if (_user != null)
             {
@@ -67,8 +96,7 @@ namespace LetsPaint.BusinessAccess.Auth
                     InstagramProfile = userProfileModel.InstagramProfile,
                     IsActive = true,
                     UserId = userProfileModel.UserId,
-                    Website = userProfileModel.Website,
-                    Photo = userProfileModel.Photo
+                    Website = userProfileModel.Website, Photo = path
                 };
                 _db.MstUserDetails.Add(mstUserDetails);
             }

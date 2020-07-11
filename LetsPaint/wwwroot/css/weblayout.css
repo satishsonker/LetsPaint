@@ -190,7 +190,7 @@
 
         .mobile-menu {
             background: #33338c;
-            width: 50vw;
+            width: 60vw;
             position: fixed;
             top: 80px;
             height: calc(100vh - 80px);
@@ -491,4 +491,18 @@
 
 .lp-d-none{
     display:none;
+}
+
+.lp-btn-disable{
+    cursor:not-allowed !important;
+    background-color:gray !important;
+    border-color:gray !important;
+    color:white;
+}
+
+.mobile-submenu
+{
+    display:none;
+    color:papayawhip;
+    list-style:none;
 }
