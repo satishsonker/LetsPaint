@@ -33,7 +33,7 @@ namespace LetsPaint.BusinessAccess.Gallery
         public object GetGallery(int GalleryTypeId, int PageNo = 1, int PageSize = 10)
         {
             var data = _db.MstGallery
-                .Where(x => Convert.ToBoolean(x.IsActive) && x.GalleyTypeId == GalleryTypeId).OrderByDescending(x => x.CreatedDate)
+                .Where(x => Convert.ToBoolean(x.IsActive) && x.GalleryTypeId == GalleryTypeId).OrderByDescending(x => x.CreatedDate)
                 .Select(x => new GalleryModel()
                 {
                     ArtistId = x.ArtistId,
@@ -42,7 +42,7 @@ namespace LetsPaint.BusinessAccess.Gallery
                     Badge = x.Badge,
                     Description = x.Description,
                     GalleryId = x.GalleryId,
-                    GalleyTypeId = x.GalleyTypeId,
+                    GalleyTypeId = x.GalleryTypeId,
                     HasArtistCertificate = x.HasArtistCertificate,
                     HasArtistSign = x.HasArtistSign,
                     Image = x.Image,

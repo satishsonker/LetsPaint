@@ -65,9 +65,7 @@ namespace LetsPaint.DataAccess.Models
                     .IsRequired()
                     .HasMaxLength(500);
 
-                entity.Property(e => e.IsActive)
-                    .IsRequired()
-                    .HasDefaultValueSql("((1))");
+                entity.Property(e => e.IsActive).HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.IsAvailable)
                     .IsRequired()
@@ -105,9 +103,9 @@ namespace LetsPaint.DataAccess.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Mst_Gallery_Mst_Users");
 
-                entity.HasOne(d => d.GalleyType)
+                entity.HasOne(d => d.GalleryType)
                     .WithMany(p => p.MstGallery)
-                    .HasForeignKey(d => d.GalleyTypeId)
+                    .HasForeignKey(d => d.GalleryTypeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Mst_Gallery_Mst_GalleryType");
             });

@@ -21,6 +21,19 @@ const apiURLs = {
             getUserList: '/admin/usermanagement/getuserlist',
             blockUser: '/admin/usermanagement/BlockUser',
             deleteUser: '/admin/usermanagement/DeleteUser'
+        },
+        galleryManagement: {
+            getGalleryType: '/admin/galleryManagement/getGalleryType',
+            addGalleryType: '/admin/galleryManagement/addGalleryType',
+            updateGalleryType: '/admin/galleryManagement/updateGalleryType',
+            saveGalleryType: '/admin/galleryManagement/saveGalleryType',
+            deleteGalleryType: '/admin/galleryManagement/deleteGalleryType',
+            getGallery: '/admin/galleryManagement/getGallery',
+            addGallery: '/admin/galleryManagement/addGallery',
+            updateGallery: '/admin/galleryManagement/updateGallery',
+            saveGallery: '/admin/galleryManagement/saveGallery',
+            deleteGallery: '/admin/galleryManagement/deleteGallery',
+            getDropdownData: '/admin/galleryManagement/getDropdownData',
         }
     }
 }

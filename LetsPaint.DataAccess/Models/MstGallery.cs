@@ -6,7 +6,7 @@ namespace LetsPaint.DataAccess.Models
     public partial class MstGallery
     {
         public int GalleryId { get; set; }
-        public int GalleyTypeId { get; set; }
+        public int GalleryTypeId { get; set; }
         public string Title { get; set; }
         public string Thumbnail { get; set; }
         public string Image { get; set; }
@@ -31,6 +31,6 @@ namespace LetsPaint.DataAccess.Models
 
         public virtual MstUsers Artist { get; set; }
         public virtual MstUsers CreatedByNavigation { get; set; }
-        public virtual MstGalleryType GalleyType { get; set; }
+        public virtual MstGalleryType GalleryType { get; set; }
     }
 }

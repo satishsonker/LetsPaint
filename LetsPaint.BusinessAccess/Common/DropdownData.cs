@@ -18,12 +18,19 @@ namespace LetsPaint.BusinessAccess.Common
 
         public List<SelectListModel> Get(string key)
         {
-            if(key.ToLower()=="usertype")
-           return _db.MstUserType.Where(x => x.IsActive).Select(x => new SelectListModel() { Text = x.UserType, Value = x.UserTypeId }).ToList();
-            else
+            if(key.ToLowerInvariant() == "usertype")
             {
-                return new List<SelectListModel>();
+                return _db.MstUserType.Where(x => x.IsActive).Select(x => new SelectListModel() { Text = x.UserType, Value = x.UserTypeId }).ToList();
             }
+            else if (key.ToLowerInvariant() == "artist")
+            {
+                var userType = _db.MstUserType.Where(x => x.IsActive && x.UserType.ToLowerInvariant() == key.ToLowerInvariant()).FirstOrDefault();
+                if(userType!=null)
+                {
+                    return _db.MstUsers.Where(x => x.IsActive && x.UserTypeId.Equals(userType.UserTypeId)).Select(x => new SelectListModel() { Text = $"{x.FirstName} {x.LastName} ({x.Email})", Value = x.UserId }).ToList();
+                }
+            }
+                return new List<SelectListModel>();
         }
     }
 }

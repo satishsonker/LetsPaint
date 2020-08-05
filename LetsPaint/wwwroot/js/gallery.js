@@ -3,7 +3,7 @@ $(document).ready(function () {
     var $galleriesContainer = $('.galleries ul'), $galleriesList = '', $query = getUrlVars(), $galId = parseInt($query.galId);
     $($galleriesContainer).empty();
 
-    api.get(url.root.gallery.getgalleryType).then(function (data) {
+    api.http.get(apiURLs.root.gallery.getgalleryType).then(function (data) {
         galleries = data.data;
         $(galleries).each(function (ind, ele) {
             $galleriesList += `<li data-id="${ele.galleryTypeId}" data-gridsize="${ele.gridSize}" class="${ele.galleryTypeId === $galId ? 'active' : ''}" data-baseurl="${ele.baseUrl}">${ele.galleryType}</li>`;
@@ -29,7 +29,7 @@ function bindGallery($galId) {
     var $container = $('.product-section .container');
     $($container).find('.row:gt(0)').remove();
     var $list = ``;
-    apiGet(url.root.gallery.getGallery + `?galleryTypeId=${$galId}`).then(function (data) {
+    api.http.get(apiURLs.root.gallery.getGallery + `?galleryTypeId=${$galId}`).then(function (data) {
         if (data.data.records.length > 0) {
             $(data.data.records).each(function (ind, ele) {
                 if (ind === 0) {
