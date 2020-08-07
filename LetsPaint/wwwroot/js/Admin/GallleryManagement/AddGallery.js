@@ -1,7 +1,26 @@
 ﻿$(document).ready(function () {
     $("#summary").dxValidationSummary({});
-    let $txtTitle, $txtBadge, $txtDescription, $ddlArtist, $txtSize, $numAvlQty, $txtMedium,$txtSurface,$numPrice;
+    let $txtTitle, $txtBadge, $txtDescription, $ddlArtist, $txtSize, $numAvlQty, $txtMedium, $txtSurface, $numPrice, $txtTags, $chkIsAvl, $chkHasArtistSign, $chkHasArtistCertificate;
     var $query = app.methods.url.urlSearchParams();
+
+    $chkIsAvl = $("#chkIsAvl").dxCheckBox({
+        value: true,
+        width: 80,
+        text: "Is Available"
+    }).dxCheckBox('instance');
+
+    $chkHasArtistSign = $("#chkHasArtistSign").dxCheckBox({
+        value: true,
+        width: 80,
+        text: "Has Artist Sign"
+    }).dxCheckBox('instance');
+
+    $chkHasArtistCertificate = $("#chkHasArtistCertificate").dxCheckBox({
+        value: true,
+        width: 80,
+        text: "Has Artist Certificate"
+    }).dxCheckBox('instance');
+
     $txtTitle = $('#txtTitle').dxTextBox({
         value: "",
         maxLength:50,
@@ -26,17 +45,7 @@
         }]
     }).dxTextBox('instance');
 
-    $txtMedium = $('#txtMedium').dxTextBox({
-        value: "",
-        maxLength: 200,
-        placeholder: "Enter product medium",
-        showClearButton: true
-    }).dxValidator({
-        validationRules: [{
-            type: "required",
-            message: "Product medium is required."
-        }]
-    }).dxTextBox('instance');
+  
 
     $txtSurface = $('#txtSurface').dxTextBox({
         value: "",
@@ -106,6 +115,96 @@
             value: data[0].value,
         }).dxSelectBox('instance');
     });
+
+    api.http.get(apiURLs.root.base.getReflookupData + `?key=Tags,ProductMedium,ProductSurface,Badge`).then(function (data) {
+        $txtBadge = $('#txtBadge').dxTagBox({
+            dataSource: new DevExpress.data.ArrayStore({
+                data: data.filter(x => x.refKey === 'Badge'),
+                key: "refId"
+            }),
+            displayExpr: "refValue",
+            valueExpr: "refId", acceptCustomValue: true,
+            onCustomItemCreating: function (args) {
+                var newValue = args.text,
+                    component = args.component,
+                    currentItems = component.option("items");
+                currentItems.unshift(newValue);
+                component.option("items", currentItems);
+                args.customItem = newValue;
+            },
+            searchEnabled: true
+        }).dxTagBox('instance');
+        $txtTags = $("#txtTags").dxTagBox({
+            dataSource: new DevExpress.data.ArrayStore({
+                data: data.filter(x => x.refKey ==='Tags'),
+                key: "refId"
+            }),
+            displayExpr: "refValue",
+            valueExpr: "refId", acceptCustomValue: true,
+            onCustomItemCreating: function (args) {
+                var newValue = args.text,
+                    component = args.component,
+                    currentItems = component.option("items");
+                currentItems.unshift(newValue);
+                component.option("items", currentItems);
+                args.customItem = newValue;
+            },
+            searchEnabled: true
+        }).dxTagBox('instance');
+        $txtMedium = $('#txtMedium').dxTagBox({
+            //value: "",
+            //maxLength: 200,
+            //placeholder: "Enter product medium",
+            //showClearButton: true 
+            dataSource: new DevExpress.data.ArrayStore({
+            data: data.filter(x => x.refKey === 'ProductMedium'),
+            key: "refId"
+        }),
+            displayExpr: "refValue",
+                valueExpr: "refId", acceptCustomValue: true,
+                    onCustomItemCreating: function (args) {
+                        var newValue = args.text,
+                            component = args.component,
+                            currentItems = component.option("items");
+                        currentItems.unshift(newValue);
+                        component.option("items", currentItems);
+                        args.customItem = newValue;
+                    },
+        searchEnabled: true
+        }).dxValidator({
+            validationRules: [{
+                type: "required",
+                message: "Product medium is required."
+            }]
+        }).dxTagBox('instance');
+
+        $txtSurface = $('#txtSurface').dxTagBox({
+            //value: "",
+            //maxLength: 200,
+            //placeholder: "Enter product medium",
+            //showClearButton: true 
+            dataSource: new DevExpress.data.ArrayStore({
+                data: data.filter(x => x.refKey === 'ProductSurface'),
+                key: "refId"
+            }),
+            displayExpr: "refValue",
+            valueExpr: "refId", acceptCustomValue: true,
+            onCustomItemCreating: function (args) {
+                var newValue = args.text,
+                    component = args.component,
+                    currentItems = component.option("items");
+                currentItems.unshift(newValue);
+                component.option("items", currentItems);
+                args.customItem = newValue;
+            },
+            searchEnabled: true
+        }).dxValidator({
+            validationRules: [{
+                type: "required",
+                message: "Product surface is required."
+            }]
+        }).dxTagBox('instance');
+    });
     if ($query && $query.get('galleryid')) {
         var $param = {
             pageNo: 1,
@@ -120,6 +219,7 @@
             $btn.option('text', 'Update')
         });
     }
+
 
     var $btn = $("#btnSave").dxButton({
         icon: "save",

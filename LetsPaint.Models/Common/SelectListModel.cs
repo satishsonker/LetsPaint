@@ -10,4 +10,10 @@ namespace LetsPaint.ModelAccess.Common
         public string Text { get; set; }
         public bool Selected { get; set; }
     }
+    public class RefLookupModel
+    {
+        public int RefId { get; set; }
+        public string RefKey { get; set; }
+        public string RefValue { get; set; }
+    }
 }

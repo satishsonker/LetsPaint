@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LetsPaint.Controllers
 {
+    [Route("[controller]")]
     public class BaseController : Controller
     {
         [HttpGet]
@@ -15,6 +16,15 @@ namespace LetsPaint.Controllers
         {
             DropdownData dropdownData = new DropdownData();
             return Json(dropdownData.Get(key));
+
+        }
+
+        [HttpGet]
+        [Route("GetRefLookupData")]
+        public JsonResult GetRefLookupData([FromQuery] string key)
+        {
+            RefLookupData refLookupData = new RefLookupData();
+            return Json(refLookupData.Get(key.Split(",").ToList()));
 
         }
     }

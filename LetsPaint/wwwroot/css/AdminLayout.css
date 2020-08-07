@@ -788,7 +788,7 @@
 .ctrl-group .dx-field-value {
     width: 100% !important;
 }
-@media only screen and (max-width: 768px) and (orientation:portrait) {
+@media only screen and (max-width: 768px) {
     .dx-field-label {
         width: 100% !important;
     }
@@ -796,4 +796,9 @@
     .dx-field-value {
         width: 100% !important;
     }
+}
+
+.dx-checkbox-has-text
+{
+    width:100% !important;
 }

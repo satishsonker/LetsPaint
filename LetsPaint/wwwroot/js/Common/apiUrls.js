@@ -4,6 +4,9 @@ const apiURLs = {
     baseUrl:'',
     root: {
         home: {},
+        base: {
+            getReflookupData: '/base/GetRefLookupData'
+        },
         auth: {
             changePassword: '/auth/changePassword',
             isEmailexist:'/auth/isEmailexist'
