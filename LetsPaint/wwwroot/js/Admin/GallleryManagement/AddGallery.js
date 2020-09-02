@@ -1,7 +1,23 @@
 ﻿$(document).ready(function () {
     $("#summary").dxValidationSummary({});
-    let $txtTitle, $txtBadge, $txtDescription, $ddlArtist, $txtSize, $numAvlQty, $txtMedium, $txtSurface, $numPrice, $txtTags, $chkIsAvl, $chkHasArtistSign, $chkHasArtistCertificate;
+    let $file, $txtSuitable, $ddlGalleryType, $txtTitle, $txtBadge, $txtDescription, $ddlArtist, $txtSize, $numAvlQty, $txtMedium, $txtSurface, $numPrice, $txtTags, $chkIsAvl, $chkHasArtistSign, $chkHasArtistCertificate;
     var $query = app.methods.url.urlSearchParams();
+
+    $file = $("#file-uploader").dxFileUploader({
+        selectButtonText: "Select photo",
+        labelText: "",
+        accept: "image/*",
+        uploadMode: "useForm", maxFileSize: 2000, allowedFileExtensions: [".jpg", ".jpeg", ".png"],
+        allowCanceling: true,
+        allowedFileExtensions: [],
+        invalidFileExtensionMessage: "File type is not allowed",
+        invalidMaxFileSizeMessage: "File is too large",
+        invalidMinFileSizeMessage: "File is too small",
+        isValid: true,
+        labelText: "or Drop file here",
+        maxFileSize: 0,
+        minFileSize: 0,
+    }).dxFileUploader("instance");
 
     $chkIsAvl = $("#chkIsAvl").dxCheckBox({
         value: true,
@@ -23,7 +39,7 @@
 
     $txtTitle = $('#txtTitle').dxTextBox({
         value: "",
-        maxLength:50,
+        maxLength: 50,
         placeholder: "Enter image Title",
         showClearButton: true
     }).dxValidator({
@@ -45,23 +61,13 @@
         }]
     }).dxTextBox('instance');
 
-  
 
-    $txtSurface = $('#txtSurface').dxTextBox({
-        value: "",
-        maxLength: 200,
-        placeholder: "Enter product surface",
-        showClearButton: true
-    }).dxValidator({
-        validationRules: [{
-            type: "required",
-            message: "Product surface is required."
-        }]
-    }).dxTextBox('instance');
+
+
 
     $numAvlQty = $('#numAvlQty').dxNumberBox({
         value: "",
-        min:1,
+        min: 1,
         max: 1000,
         placeholder: "Enter available quantity",
         showClearButton: true
@@ -94,7 +100,7 @@
 
     $txtDescription = $('#txtDescription').dxTextArea({
         value: "",
-        height:113,
+        height: 113,
         maxLength: 500,
         placeholder: "Enter image description",
         showClearButton: true
@@ -105,7 +111,18 @@
         }]
     }).dxTextArea('instance');
     api.http.get(apiURLs.admin.galleryManagement.getDropdownData + `?key=artist`).then(function (data) {
-        $ddlArtist=  $("#ddlArtist").dxSelectBox({
+        $ddlArtist = $("#ddlArtist").dxSelectBox({
+            dataSource: new DevExpress.data.ArrayStore({
+                data: data,
+                key: "value"
+            }),
+            displayExpr: "text",
+            valueExpr: "value",
+            value: data[0].value,
+        }).dxSelectBox('instance');
+    });
+    api.http.get(apiURLs.admin.galleryManagement.getDropdownData + `?key=gallerytype`).then(function (data) {
+        $ddlGalleryType = $("#ddlGalleryType").dxSelectBox({
             dataSource: new DevExpress.data.ArrayStore({
                 data: data,
                 key: "value"
@@ -116,14 +133,61 @@
         }).dxSelectBox('instance');
     });
 
-    api.http.get(apiURLs.root.base.getReflookupData + `?key=Tags,ProductMedium,ProductSurface,Badge`).then(function (data) {
+    api.http.get(apiURLs.root.base.getReflookupData + `?key=Tags,ProductMedium,ProductSurface,Badge,ProductSuitable`).then(function (data) {
+        $txtSurface = $('#txtSurface').dxTagBox({
+            dataSource: new DevExpress.data.ArrayStore({
+                data: data.filter(x => x.refKey === 'ProductSurface'),
+                key: "refValue"
+            }),
+            displayExpr: "refValue",
+            valueExpr: "refValue", acceptCustomValue: true,
+            onCustomItemCreating: function (args) {
+                var newValue = args.text,
+                    component = args.component,
+                    currentItems = component.option("items");
+                currentItems.unshift(newValue);
+                component.option("items", currentItems);
+                args.customItem = newValue;
+            },
+            searchEnabled: true
+        }).dxValidator({
+            validationRules: [{
+                type: "required",
+                message: "Product surface is required."
+            }]
+        }).dxTagBox('instance');
+
+        $txtSuitable = $('#txtSuitable').dxTagBox({
+            dataSource: new DevExpress.data.ArrayStore({
+                data: data.filter(x => x.refKey === 'ProductSuitable'),
+                key: "refValue"
+            }),
+            displayExpr: "refValue",
+            valueExpr: "refValue", acceptCustomValue: true,
+            onCustomItemCreating: function (args) {
+                var newValue = args.text,
+                    component = args.component,
+                    currentItems = component.option("items");
+                currentItems.unshift(newValue);
+                component.option("items", currentItems);
+                args.customItem = newValue;
+            },
+            searchEnabled: true
+        }).dxValidator({
+            validationRules: [{
+                type: "required",
+                message: "Product suitable is required."
+            }]
+        }).dxTagBox('instance');
+
+
         $txtBadge = $('#txtBadge').dxTagBox({
             dataSource: new DevExpress.data.ArrayStore({
                 data: data.filter(x => x.refKey === 'Badge'),
-                key: "refId"
+                key: "refValue"
             }),
             displayExpr: "refValue",
-            valueExpr: "refId", acceptCustomValue: true,
+            valueExpr: "refValue", acceptCustomValue: true,
             onCustomItemCreating: function (args) {
                 var newValue = args.text,
                     component = args.component,
@@ -136,11 +200,11 @@
         }).dxTagBox('instance');
         $txtTags = $("#txtTags").dxTagBox({
             dataSource: new DevExpress.data.ArrayStore({
-                data: data.filter(x => x.refKey ==='Tags'),
-                key: "refId"
+                data: data.filter(x => x.refKey === 'Tags'),
+                key: "refValue"
             }),
             displayExpr: "refValue",
-            valueExpr: "refId", acceptCustomValue: true,
+            valueExpr: "refValue", acceptCustomValue: true,
             onCustomItemCreating: function (args) {
                 var newValue = args.text,
                     component = args.component,
@@ -157,20 +221,20 @@
             //placeholder: "Enter product medium",
             //showClearButton: true 
             dataSource: new DevExpress.data.ArrayStore({
-            data: data.filter(x => x.refKey === 'ProductMedium'),
-            key: "refId"
-        }),
+                data: data.filter(x => x.refKey === 'ProductMedium'),
+                key: "refValue"
+            }),
             displayExpr: "refValue",
-                valueExpr: "refId", acceptCustomValue: true,
-                    onCustomItemCreating: function (args) {
-                        var newValue = args.text,
-                            component = args.component,
-                            currentItems = component.option("items");
-                        currentItems.unshift(newValue);
-                        component.option("items", currentItems);
-                        args.customItem = newValue;
-                    },
-        searchEnabled: true
+            valueExpr: "refValue", acceptCustomValue: true,
+            onCustomItemCreating: function (args) {
+                var newValue = args.text,
+                    component = args.component,
+                    currentItems = component.option("items");
+                currentItems.unshift(newValue);
+                component.option("items", currentItems);
+                args.customItem = newValue;
+            },
+            searchEnabled: true
         }).dxValidator({
             validationRules: [{
                 type: "required",
@@ -185,10 +249,10 @@
             //showClearButton: true 
             dataSource: new DevExpress.data.ArrayStore({
                 data: data.filter(x => x.refKey === 'ProductSurface'),
-                key: "refId"
+                key: "refValue"
             }),
             displayExpr: "refValue",
-            valueExpr: "refId", acceptCustomValue: true,
+            valueExpr: "refValue", acceptCustomValue: true,
             onCustomItemCreating: function (args) {
                 var newValue = args.text,
                     component = args.component,
@@ -204,21 +268,37 @@
                 message: "Product surface is required."
             }]
         }).dxTagBox('instance');
+
+
+        if ($query && $query.get('galleryid')) {
+            var $param = {
+                pageNo: 1,
+                pageSize: 10,
+                id: $query.get('galleryid')
+            };
+            api.http.post(apiURLs.admin.galleryManagement.getGallery, $param).then(function (data) {
+                var $data = data.data[0];
+                $btn.option('text', 'Update')
+                $('#imgPreview').attr('src', $data.baseUrl + $data.image);
+                $txtSuitable.option('value', $data.suitableFor === null ? '' : $data.suitableFor.trim().split(','));
+                $ddlGalleryType.option('value', $data.galleryTypeId);
+                $txtTitle.option('value', $data.title);
+                $txtBadge.option('value', $data.badge === null ? '' : $data.badge.trim().split(','));
+                $txtDescription.option('value', $data.description);
+                $ddlArtist.option('value', $data.artistId);
+                $txtSize.option('value', $data.size);
+                $numAvlQty.option('value', $data.availableQy);
+                $txtMedium.option('value', $data.medium === null ? '' : $data.medium.trim().split(','));
+                $txtSurface.option('value', $data.surface === null ? '' : $data.surface.trim().split(','));
+                $numPrice.option('value', $data.price);
+                $txtTags.option('value', $data.tags === null ? '' : $data.tags.trim().split(','));
+                $chkIsAvl.option('value', $data.isAvailable);
+                $chkHasArtistSign.option('value', $data.hasArtistSign);
+                $chkHasArtistCertificate.option('value', $data.hasArtistCertificate);
+            });
+        }
     });
-    if ($query && $query.get('galleryid')) {
-        var $param = {
-            pageNo: 1,
-            pageSize: 10,
-            id: $query.get('galleryid')
-        };
-        api.http.post(apiURLs.admin.galleryManagement.getGallery, $param).then(function (data) {
-            $numGridSize.option('value', data.data[0].gridSize);
-            $txtBaseUrl.option('value', data.data[0].baseUrl);
-            $txtGalleryType.option('value', data.data[0].galleryType);
-            $txtBaseUrl.option('value', data.data[0].baseUrl);
-            $btn.option('text', 'Update')
-        });
-    }
+   
 
 
     var $btn = $("#btnSave").dxButton({
@@ -235,21 +315,47 @@
 
 
 
-    $('#frmAddUser').on('submit', function (e) {
+    $('#frmAddGallery').on('submit', function (e) {
 
-        var $formData = {};
-        $formData.GalleryType= $txtGalleryType.option('value');
-        $formData.GridSize=$numGridSize.option('value');
-        $formData.BaseUrl=$txtBaseUrl.option('value');
-        $formData.UserId = 2;
+        var $formData = new FormData();
+        $formData.append('GalleryTypeId', $ddlGalleryType.option('value'));
+        $formData.append('GalleryType', $ddlGalleryType.option('text'));
+        $formData.append('file', $file.option('value')[0]);
+        $formData.append('UserId',2);
+        $formData.append('ArtistId',$ddlArtist.option('value'));
+        $formData.append('AvailableQy',$numAvlQty.option('value'));
+        $formData.append('Badge',$txtBadge.option('value'));
+        $formData.append('Description',$txtDescription.option('value'));
+        $formData.append('HasArtistCertificate',$chkHasArtistCertificate.option('value'));
+        $formData.append('HasArtistSign',$chkHasArtistSign.option('value'));
+        $formData.append('IsAvailable',$chkIsAvl.option('value'));
+        $formData.append('Medium',$txtMedium.option('value'));
+        $formData.append('Price',$numPrice.option('value'));
+        $formData.append('Size',$txtSize.option('value'));
+        $formData.append('SuitableFor',$txtSuitable.option('value'));
+        $formData.append('Surface',$txtSurface.option('value'));
+        $formData.append('Tags',$txtTags.option('value'));
+        $formData.append('Title',$txtTitle.option('value'));
         if ($query) {
-            $formData.galleryTypeId = $query.get('gallerytypeid');
-            }
-        var $url = $btn.option('text') === 'Update' ? apiURLs.admin.galleryManagement.updateGalleryType : apiURLs.admin.galleryManagement.saveGalleryType;
-        api.http.post($url, $formData).then(function (data) {
+            $formData.append('galleryId',$query.get('galleryid'));
+        }
+        var $url = $btn.option('text') === 'Update' ? apiURLs.admin.galleryManagement.updateGallery : apiURLs.admin.galleryManagement.saveGallery;
+        api.http.postWithFile($url, $formData).then(function (data) {
             api.successMsgHandler(data);
-                location.reload(true);
+            app.methods.url.redirectTo(pageUrls.admin.galleryManagement.galleryList);
         }).catch(api.errorHandler);
         e.preventDefault();
     });
+
+    $('.fas.fa-camera').click(function() {
+        $('.dx-fileuploader-button.dx-button.dx-button-normal.dx-button-mode-contained.dx-widget.dx-button-has-text').click();
+    });
+});
+
+window.addEventListener("beforeunload", function (e) {
+    //var confirmationMessage = 'It looks like you have been editing something. '
+    //    + 'If you leave before saving, your changes will be lost.';
+
+    //(e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    //return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
 });

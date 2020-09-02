@@ -382,15 +382,16 @@
         padding-left: 20px !important;
     }
 
-    .summary-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #80808059;
-        width: 100%;
-        height: 100%;
-        display: none;
-    }
+.summary-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #80808059;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 99999999;
+}
 
         .summary-container > .summary-container-inner {
             border: 1px solid #80808059;
@@ -719,7 +720,8 @@
 
     #fileuploader-container {
         border: 1px solid #d3d3d3;
-        margin: 20px 20px 0 20px;
+        margin: 0px;
+        border-radius:4px;
     }
 
     #imgLogo {
@@ -801,4 +803,45 @@
 .dx-checkbox-has-text
 {
     width:100% !important;
+}
+
+.img_preview
+{
+    width:100%;
+    height:200px;
+
+}
+
+.img_upload {
+    font-size: 22px;
+    float: right;
+    position: absolute;
+    right: 19px;
+    bottom: 20px;
+    color: forestgreen;
+    background: black;
+    border-radius: 50px;
+    padding: 7px;
+    height: 37px;
+    cursor: pointer;
+}
+.header-pro-icon {
+    border: 1px solid;
+    border-radius: 37px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.header-pro-popup {
+    width: 200px;
+    height: 233px;
+    border: 1px solid gainsboro;
+    position: fixed;
+    z-index: 9999;
+    right: 19px;
+    top: 57px;
+    border-radius: 4px;
+    background: white;
+    box-shadow: 5px 3px 5px grey;
 }

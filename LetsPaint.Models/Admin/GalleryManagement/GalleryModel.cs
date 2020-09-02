@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,6 +17,7 @@ namespace LetsPaint.ModelAccess.Admin.GalleryManagement
     public class GalleryModel
     {
         public int GalleryTypeId { get; set; }
+        public int GridSize { get; set; }
         public int GalleryId { get; set; }
         public string BaseUrl { get; set; }
         public string GalleryType { get; set; }
@@ -37,5 +39,13 @@ namespace LetsPaint.ModelAccess.Admin.GalleryManagement
         public string Tags { get; set; }
         public string Thumbnail { get; set; }
         public string Title { get; set; }
+        public IFormFile file { get; set; }
+    }
+
+    public class GalleryImageDeleteModel
+    {
+        public int GalleryId { get; set; }
+        public int UserId { get; set; }
+        public string BaseUrl { get; set; }
     }
 }

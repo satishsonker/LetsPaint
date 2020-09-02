@@ -95,7 +95,7 @@ namespace LetsPaint.DataAccess.Models
                     .WithMany(p => p.MstGalleryArtist)
                     .HasForeignKey(d => d.ArtistId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Mst_Gallery_Mst_Users1");
+                    .HasConstraintName("FK_Mst_Gallery_Mst_Users_Artist");
 
                 entity.HasOne(d => d.CreatedByNavigation)
                     .WithMany(p => p.MstGalleryCreatedByNavigation)

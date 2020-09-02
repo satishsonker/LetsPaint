@@ -61,11 +61,7 @@ $(document).on('submit', '#frmChangePassword', function (e) {
     //}).catch(apiError);
 });
 
-$('a[href*="#"]')
-    // Remove links that don't actually link to anything
-    .not('[href="#"]')
-    .not('[href="#0"]')
-    .click(function (event) {
+$(document).on('click', 'a[href*="#"]:not([href="#0"]):not([href="#"])', function (event) {
         // On-page links
         if (
             location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
@@ -95,7 +91,7 @@ $('a[href*="#"]')
                 });
             }
         }
-    });
+    })
 
 $(document).on('click', '.profile-menu li:gt(0)', function () {
     $('.profile-menu ').hide();

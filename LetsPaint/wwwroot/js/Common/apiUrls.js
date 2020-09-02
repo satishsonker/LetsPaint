@@ -27,7 +27,6 @@ const apiURLs = {
         },
         galleryManagement: {
             getGalleryType: '/admin/galleryManagement/getGalleryType',
-            addGalleryType: '/admin/galleryManagement/addGalleryType',
             updateGalleryType: '/admin/galleryManagement/updateGalleryType',
             saveGalleryType: '/admin/galleryManagement/saveGalleryType',
             deleteGalleryType: '/admin/galleryManagement/deleteGalleryType',
@@ -36,10 +35,25 @@ const apiURLs = {
             updateGallery: '/admin/galleryManagement/updateGallery',
             saveGallery: '/admin/galleryManagement/saveGallery',
             deleteGallery: '/admin/galleryManagement/deleteGallery',
+            deleteGalleryImage: '/admin/galleryManagement/deleteGalleryImage',
             getDropdownData: '/admin/galleryManagement/getDropdownData',
         }
     }
 }
+
+const pageUrls = {
+    admin: {
+        userManagement: {
+        },
+        galleryManagement: {
+            galleryList: '/admin/galleryManagement/gallery',
+            addGalleryType: '/admin/galleryManagement/addGalleryType',
+            galleryTypeList: '/admin/galleryManagement/GalleryType',
+            addGallery: '/admin/galleryManagement/addGallery',
+        }
+    }
+}
+
 if (location.host.indexOf('localhost') > -1) {
     apiURLs.baseUrl = "http://localhost:59928";
 } else {

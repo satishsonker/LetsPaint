@@ -3,7 +3,7 @@ app.menu = {};
 app.api = {};
 
 //app.baseApiUrl = 'http://api-bhaskarjyotishya.somee.com/api/';
-app.baseApiUrl = 'http://localhost:59524/api/';
+//app.baseApiUrl = 'http://localhost:59524/api/';
 
 // API Start
 app.api.methodType = {

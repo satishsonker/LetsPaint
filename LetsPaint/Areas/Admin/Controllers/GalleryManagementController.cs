@@ -6,6 +6,7 @@ using LetsPaint.BusinessAccess.Admin.GalleryManagement;
 using LetsPaint.Controllers;
 using LetsPaint.ModelAccess.Admin.GalleryManagement;
 using LetsPaint.ModelAccess.Common;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LetsPaint.Areas.Admin.Controllers
@@ -14,7 +15,11 @@ namespace LetsPaint.Areas.Admin.Controllers
     [Route("admin/[controller]")]
     public class GalleryManagementController : BaseController
     {
-        GalleryManagementDetails galleryManagementDetails;
+       private readonly GalleryManagementDetails galleryManagementDetails;
+        public GalleryManagementController(IHostingEnvironment hostingEnvironment)
+        {
+           galleryManagementDetails=new GalleryManagementDetails(hostingEnvironment);
+        }
 
         [HttpGet]
         [Route("GalleryType")]
@@ -32,7 +37,6 @@ namespace LetsPaint.Areas.Admin.Controllers
         [Route("GetGalleryType")]
         public JsonResult GetGalleryType([FromBody] PagingInModel pagingInModel)
         {
-            galleryManagementDetails = new GalleryManagementDetails();
             return Json(galleryManagementDetails.GetGalleryType(pagingInModel));
 
         }
@@ -41,7 +45,6 @@ namespace LetsPaint.Areas.Admin.Controllers
         [Route("SaveGalleryType")]
         public JsonResult SaveGalleryType([FromBody] GalleryTypeModel galleryTypeModel)
         {
-            galleryManagementDetails = new GalleryManagementDetails();
             return Json(galleryManagementDetails.SaveGalleryType(galleryTypeModel));
 
         }
@@ -50,7 +53,6 @@ namespace LetsPaint.Areas.Admin.Controllers
         [Route("UpdateGalleryType")]
         public JsonResult UpdateGalleryType([FromBody] GalleryTypeModel galleryTypeModel)
         {
-            galleryManagementDetails = new GalleryManagementDetails();
             return Json(galleryManagementDetails.UpdateGalleryType(galleryTypeModel));
 
         }
@@ -59,9 +61,7 @@ namespace LetsPaint.Areas.Admin.Controllers
         [Route("DeleteGalleryType")]
         public JsonResult DeleteGalleryType([FromBody] GalleryTypeModel galleryTypeModel)
         {
-            galleryManagementDetails = new GalleryManagementDetails();
             return Json(galleryManagementDetails.DeleteGalleryType(galleryTypeModel));
-
         }
 
         [HttpGet]
@@ -83,36 +83,35 @@ namespace LetsPaint.Areas.Admin.Controllers
         [Route("GetGallery")]
         public JsonResult GetGallery([FromBody] PagingInModel pagingInModel)
         {
-            galleryManagementDetails = new GalleryManagementDetails();
             return Json(galleryManagementDetails.GetGallery(pagingInModel));
-
         }
 
         [HttpPost]
         [Route("SaveGallery")]
-        public JsonResult SaveGallery([FromBody] GalleryModel galleryModel)
+        public JsonResult SaveGallery([FromForm] GalleryModel galleryModel)
         {
-            galleryManagementDetails = new GalleryManagementDetails();
             return Json(galleryManagementDetails.SaveGallery(galleryModel));
-
         }
 
         [HttpPost]
         [Route("UpdateGallery")]
-        public JsonResult UpdateGallery([FromBody] GalleryModel galleryModel)
+        public JsonResult UpdateGallery([FromForm] GalleryModel galleryModel)
         {
-            galleryManagementDetails = new GalleryManagementDetails();
             return Json(galleryManagementDetails.UpdateGallery(galleryModel));
-
         }
 
         [HttpPost]
         [Route("DeleteGallery")]
         public JsonResult DeleteGallery([FromBody] GalleryModel galleryModel)
         {
-            galleryManagementDetails = new GalleryManagementDetails();
             return Json(galleryManagementDetails.DeleteGallery(galleryModel));
+        }
 
+        [HttpPost]
+        [Route("DeleteGalleryImage")]
+        public JsonResult DeleteGalleryImage([FromBody] GalleryImageDeleteModel galleryImageDeleteModel)
+        {
+            return Json(galleryManagementDetails.DeleteGalleryImage(galleryImageDeleteModel));
         }
     }
 }

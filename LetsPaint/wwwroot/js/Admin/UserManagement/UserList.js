@@ -22,6 +22,11 @@
                 allowedPageSizes: [5, 10, 20],
                 showInfo: true
             },
+            pager: {
+                showPageSizeSelector: true,
+                allowedPageSizes: [5, 10, 20],
+                showInfo: true
+            },
             columns: [{
                 caption: "Action",
                 width: 125,
@@ -64,16 +69,6 @@
                 var dataGrid = e.component;
 
                 e.toolbarOptions.items.unshift({
-                    location: "before",
-                    widget: "dxButton",
-                    options: {
-                        icon: "fa fa-user-astronaut",
-                        hint: 'Add Astrologer',
-                        onClick: function (e) {
-                            app.methods.url.redirectTo(app.page.urls.adminArea.userManagement.addAstrologer);
-                        }
-                    }
-                }, {
                     location: "before",
                     widget: "dxButton",
                     options: {

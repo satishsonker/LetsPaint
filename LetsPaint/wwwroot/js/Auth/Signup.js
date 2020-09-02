@@ -3,7 +3,7 @@
     $('.input-loading').show();
     $('.fa-times').hide();
     $('.fa-check').hide();
-    apiPost(url.root.auth.isEmailexist + '?email=' + $(this).val()).catch(apiError).then(function (data) {
+    api.http.post(url.root.auth.isEmailexist + '?email=' + $(this).val()).catch(apiError).then(function (data) {
         $('.input-loading').hide();
         if (data) {
             $('.fa-times').show();

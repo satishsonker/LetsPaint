@@ -2,7 +2,7 @@
     let $dxDataGrid;
     var $param = {
         pageNo: 1,
-        pageSize: 10
+        pageSize: 30
     };
     api.http.post(apiURLs.admin.galleryManagement.getGallery, $param).then(function (data) {
         $dxDataGrid = $("#gridContainer").dxDataGrid({
@@ -62,10 +62,20 @@
                     location: "before",
                     widget: "dxButton",
                     options: {
+                        icon: "fab fa-canadian-maple-leaf",
+                        hint: 'Add Gallery',
+                        onClick: function (e) {
+                            app.methods.url.redirectTo(pageUrls.admin.galleryManagement.addGallery);
+                        }
+                    }
+                },{
+                    location: "before",
+                    widget: "dxButton",
+                    options: {
                         icon: "fab fa-pagelines",
                         hint: 'Add Gallery Type',
                         onClick: function (e) {
-                            app.methods.url.redirectTo(apiURLs.admin.galleryManagement.addGalleryType);
+                            app.methods.url.redirectTo(pageUrls.admin.galleryManagement.addGalleryType);
                         }
                     }
                 },{

@@ -2,27 +2,6 @@
     $("#summary").dxValidationSummary({});
     let $txtGalleryType, $numGridSize, $txtBaseUrl;
     var $query = app.methods.url.urlSearchParams();
-    $txtGalleryType = $('#txtGalleryType').dxTextBox({
-        value: "",
-        placeholder: "Enter gallery type",
-        showClearButton: true
-    }).dxValidator({
-        validationRules: [{
-            type: "required",
-            message: " Gallery typeis required."
-        }]
-    }).dxTextBox('instance');
-
-    $numGridSize = $('#numGridSize').dxNumberBox({
-        value: "",
-        placeholder: "Enter grid size",
-        showClearButton: true
-    }).dxValidator({
-        validationRules: [{
-            type: "required",
-            message: "Grid size is required."
-        }]
-    }).dxNumberBox('instance');
 
     $txtBaseUrl = $('#txtBaseUrl').dxTextBox({
         value: "",
@@ -35,7 +14,36 @@
         }]
     }).dxTextBox('instance');
 
-    if ($query) {
+    $txtGalleryType = $('#txtGalleryType').dxTextBox({
+        value: "",
+        placeholder: "Enter gallery type",
+        showClearButton: true,
+        onValueChanged: function (e) {
+            const previousValue = e.previousValue;
+            const newValue = e.value;
+            $txtBaseUrl.option("value", '/Images/Product/' + e.value.replace(/ /g,'')+'/')
+        }
+    }).dxValidator({
+        validationRules: [{
+            type: "required",
+            message: " Gallery typeis required."
+        }]
+    }).dxTextBox('instance');
+
+    $numGridSize = $('#numGridSize').dxNumberBox({
+        value: 4,
+        min: 2,
+        max:12,
+        placeholder: "Enter grid size",
+        showClearButton: true
+    }).dxValidator({
+        validationRules: [{
+            type: "required",
+            message: "Grid size is required."
+        }]
+    }).dxNumberBox('instance');
+
+    if ($query.get('gallerytypeid')) {
         var $param = {
             pageNo: 1,
             pageSize: 10,
@@ -71,13 +79,13 @@
         $formData.GridSize=$numGridSize.option('value');
         $formData.BaseUrl=$txtBaseUrl.option('value');
         $formData.UserId = 2;
-        if ($query) {
+        if ($query.get('gallerytypeid')) {
             $formData.galleryTypeId = $query.get('gallerytypeid');
             }
         var $url = $btn.option('text') === 'Update' ? apiURLs.admin.galleryManagement.updateGalleryType : apiURLs.admin.galleryManagement.saveGalleryType;
         api.http.post($url, $formData).then(function (data) {
             api.successMsgHandler(data);
-                location.reload(true);
+            app.methods.url.redirectTo(pageUrls.admin.galleryManagement.galleryTypeList);
         }).catch(api.errorHandler);
         e.preventDefault();
     });

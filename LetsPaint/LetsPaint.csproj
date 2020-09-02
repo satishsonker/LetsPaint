@@ -1,15 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>cb6d082e-923e-4880-b317-0f8395a2f50d</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
     <Content Include="emailTemplate\query.html" />
   </ItemGroup>
-
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -18,18 +16,13 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="NETCore.MailKit" Version="2.0.1" />
   </ItemGroup>
-
-
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\images\Users\" />
   </ItemGroup>
-
-
   <ItemGroup>
     <ProjectReference Include="..\LetsPaint.BusinessAccess\LetsPaint.BusinessAccess.csproj" />
     <ProjectReference Include="..\LetsPaint.Models\LetsPaint.Models.csproj" />
   </ItemGroup>
-
 </Project>

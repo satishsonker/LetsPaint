@@ -30,7 +30,12 @@ namespace LetsPaint.BusinessAccess.Common
                     return _db.MstUsers.Where(x => x.IsActive && x.UserTypeId.Equals(userType.UserTypeId)).Select(x => new SelectListModel() { Text = $"{x.FirstName} {x.LastName} ({x.Email})", Value = x.UserId }).ToList();
                 }
             }
-                return new List<SelectListModel>();
+            else if (key.ToLowerInvariant() == "gallerytype")
+            {
+                 return _db.MstGalleryType.Where(x => x.IsActive).Select(x => new SelectListModel() { Text = x.GalleryType, Value = x.GalleryTypeId }).ToList();
+              
+            }
+            return new List<SelectListModel>();
         }
     }
 }

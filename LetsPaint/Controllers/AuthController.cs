@@ -16,6 +16,8 @@ using LetsPaint.ModelAccess.Common;
 using LetsPaint.Filters;
 using LetsPaint.ModelAccess.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication;
 
 namespace LetsPaint.Controllers
 {
@@ -50,6 +52,36 @@ namespace LetsPaint.Controllers
         public IActionResult Login()
         {
             return View();
+        }
+
+        public IActionResult LoginGoogle([FromQuery] string returnUrl)
+        {
+            return new ChallengeResult(
+                GoogleDefaults.AuthenticationScheme,
+                new AuthenticationProperties
+                {
+                    RedirectUri = Url.Action(nameof(LoginCallback), new { returnUrl })
+                });
+        }
+
+        [Route("signin-google")]
+        public async Task<IActionResult> LoginCallback(string returnUrl)
+        {
+            var authenticateResult = await HttpContext.AuthenticateAsync("External");
+
+            if (!authenticateResult.Succeeded)
+                return BadRequest(); // TODO: Handle this better.
+
+            var claimsIdentity = new ClaimsIdentity("Application");
+
+            claimsIdentity.AddClaim(authenticateResult.Principal.FindFirst(ClaimTypes.NameIdentifier));
+            claimsIdentity.AddClaim(authenticateResult.Principal.FindFirst(ClaimTypes.Email));
+
+            await HttpContext.SignInAsync(
+                "Application",
+                new ClaimsPrincipal(claimsIdentity));
+
+            return LocalRedirect(returnUrl);
         }
 
         [HttpGet]

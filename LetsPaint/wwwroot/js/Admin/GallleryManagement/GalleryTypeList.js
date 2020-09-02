@@ -30,7 +30,7 @@
                 cellTemplate: function (container, options) {
                     $(`<div class="action-panel">`)
                         .append(`<ul>
-                                    <li title="Edit"><a href="/admin/GalleryManagement/AddGalleryType?gallerytypeid=${options.data.galleryTypeId}"><i class="la la-pencil"></a></i></li>
+                                    <li title="Edit"><a href="${pageUrls.admin.galleryManagement.addGalleryType}?gallerytypeid=${options.data.galleryTypeId}"><i class="la la-pencil"></a></i></li>
                                     <li title="Delete" onclick="deleteGalleryType(${options.data.galleryTypeId})"><i class="la la-trash"></i></li>
                                     </ul>`)
                         .appendTo(container);
@@ -55,7 +55,7 @@
                         icon: "fab fa-pagelines",
                         hint: 'Add Gallery Type',
                         onClick: function (e) {
-                            app.methods.url.redirectTo(apiURLs.admin.galleryManagement.addGalleryType);
+                            app.methods.url.redirectTo(pageUrls.admin.galleryManagement.addGalleryType);
                         }
                     }
                 },{
@@ -98,7 +98,7 @@ var deleteGalleryType = function (galleryTypeId) {
             };
             api.http.post(apiURLs.admin.galleryManagement.deleteGalleryType, $param).then(function (data) {
                 api.successMsgHandler(data);
-                location.reload(true);
+                app.methods.url.redirectTo(pageURLs.admin.galleryManagement.addGalleryType);
             }).catch(api.errorHandler);
 
         }

@@ -26,10 +26,37 @@
 </div>
 <div class="data-container">
     <div class="inner-container">
-        <form id="frmAddUser">
+        <form id="frmAddGallery">
             <div class="form">
+               
                 <div class="row">
                     <div class="col-md">
+                        <div class="dx-fieldset">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Image<strong class="mandatory">*</strong></div>
+                                <div class="dx-field-value">
+                                    <div class="card">
+                                        <div class="card-body" style="padding:0px;">
+                                            <img src="" id="imgPreview" class="img_preview" />
+                                            <i class="fas fa-camera img_upload"></i>
+                                            <div id="file-uploader" style="display:none;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <div class="dx-fieldset">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Gallery Type<strong class="mandatory">*</strong></div>
+                                <div class="dx-field-value">
+                                    <div id="ddlGalleryType"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -147,6 +174,18 @@
                                 <div class="dx-field-label">Product Surface<strong class="mandatory">*</strong></div>
                                 <div class="dx-field-value">
                                     <div id="txtSurface"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md">
+                        <div class="dx-fieldset">
+                            <div class="dx-field">
+                                <div class="dx-field-label">Suitable For<strong class="mandatory">*</strong></div>
+                                <div class="dx-field-value">
+                                    <div id="txtSuitable"></div>
                                 </div>
                             </div>
                         </div>
